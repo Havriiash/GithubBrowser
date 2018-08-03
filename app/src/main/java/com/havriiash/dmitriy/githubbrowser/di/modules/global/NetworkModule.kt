@@ -18,6 +18,7 @@ class NetworkModule {
     @Module
     companion object {
 
+        @JvmStatic
         @AppScope
         @Provides
         fun provideGson(): Gson {
@@ -27,6 +28,7 @@ class NetworkModule {
                     .create()
         }
 
+        @JvmStatic
         @AppScope
         @Provides
         fun provideOkHttpClient(): OkHttpClient {
@@ -34,6 +36,7 @@ class NetworkModule {
                     .build()
         }
 
+        @JvmStatic
         @AppScope
         @Provides
         fun provideRetrofit(baseUrl: String,
@@ -47,6 +50,7 @@ class NetworkModule {
                     .build()
         }
 
+        @JvmStatic
         @AppScope
         @Provides
         fun provideGithubApi(): GithubApi {

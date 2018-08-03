@@ -1,7 +1,9 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote
 
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
 import io.reactivex.Single
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Query
@@ -35,6 +37,9 @@ interface GithubApi {
 
 //    =============================================================================================
 //    User queries
+
+    @GET("/user")
+    fun getUser(@Query("access_token") token: String): Single<User>
 
 //    =============================================================================================
 //    Follows queries

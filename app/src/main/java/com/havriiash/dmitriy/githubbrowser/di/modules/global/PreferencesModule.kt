@@ -12,6 +12,7 @@ class PreferencesModule {
     @Module
     companion object {
 
+        @JvmStatic
         @AppScope
         @Provides
         fun provideAppPreferences(context: Context): GithubBrowserPreferences =
