@@ -1,19 +1,14 @@
 package com.havriiash.dmitriy.githubbrowser.main.ui
 
-import android.content.Context
 import android.os.Bundle
 import com.havriiash.dmitriy.githubbrowser.R
 import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
-
-    @Inject
-    lateinit var context: Context
+class NewsActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_news)
     }
 
 }
