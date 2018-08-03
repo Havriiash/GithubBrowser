@@ -2,5 +2,23 @@
     <string name="app_name">GithubBrowser</string>
 
     <string name="sign_in">Sign in</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!--drawer menu-->
+    <string name="drawer_news">News</string>
+    <string name="drawer_repos">Repositories</string>
+    <string name="drawer_gists">Gists</string>
+    <string name="drawer_followers">Followers</string>
+    <string name="drawer_following">Following</string>
+    <string name="drawer_search">Search</string>
+    <string name="drawer_settings">Settings</string>
+    <string name="drawer_logout">Logout</string>
 
 </resources>

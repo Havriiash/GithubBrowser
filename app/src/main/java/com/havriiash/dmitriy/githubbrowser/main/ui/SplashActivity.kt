@@ -11,7 +11,6 @@ import android.view.View
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.GithubApi
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.databinding.ActivitySplashBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
 import com.havriiash.dmitriy.githubbrowser.main.vm.SplashViewModel
@@ -37,13 +36,11 @@ class SplashActivity : BaseActivity() {
         }
 
         viewModel.authorizeObserver.observe(this, authObserver)
-        viewModel.userObserver.observe(this, userObserver)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         viewModel.authorizeObserver.removeObserver(authObserver)
-        viewModel.userObserver.removeObserver(userObserver)
     }
 
     override fun onResume() {
@@ -68,29 +65,17 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startBrowser() {
-        startActivity(Intent(this, NewsActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 
     private val authObserver: Observer<RemoteResource<String>> = Observer {
         when(it?.state) {
-            RemoteResource.State.LOADING -> {}
-            RemoteResource.State.SUCCESS -> viewModel.getUserInfo(it.data!!)
-            RemoteResource.State.ERROR -> {
-                showError(it.throwable?.message!!)
-                showProgress(false)
-                binding.activitySplashBtnSignIn.isEnabled = true
-            }
-        }
-    }
-
-    private val userObserver: Observer<RemoteResource<User>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> {}
+            RemoteResource.State.LOADING -> { showProgress(true) }
             RemoteResource.State.SUCCESS -> {
-                binding.activitySplashBtnSignIn.isEnabled = true
-                showProgress(false)
                 startBrowser()
+                showProgress(false)
+                binding.activitySplashBtnSignIn.isEnabled = true
             }
             RemoteResource.State.ERROR -> {
                 showError(it.throwable?.message!!)
