@@ -8,18 +8,23 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/action_news"
+            android:icon="@drawable/ic_news"
             android:title="@string/drawer_news" />
         <item
             android:id="@+id/action_repo"
+            android:icon="@drawable/ic_repos"
             android:title="@string/drawer_repos" />
         <item
             android:id="@+id/action_gists"
+            android:icon="@drawable/ic_gists"
             android:title="@string/drawer_gists" />
         <item
             android:id="@+id/action_followers"
+            android:icon="@drawable/ic_followers"
             android:title="@string/drawer_followers" />
         <item
             android:id="@+id/action_following"
+            android:icon="@drawable/ic_followers"
             android:title="@string/drawer_following" />
     </group>
 
@@ -28,6 +33,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/action_search"
+            android:icon="@drawable/ic_search"
             android:title="@string/drawer_search" />
     </group>
 
@@ -36,6 +42,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/action_settings"
+            android:icon="@drawable/ic_settings"
             android:title="@string/drawer_settings" />
     </group>
 
@@ -44,6 +51,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/action_logout"
+            android:icon="@drawable/ic_logout"
             android:title="@string/drawer_logout" />
     </group>
 
