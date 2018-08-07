@@ -1,5 +1,6 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote
 
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
@@ -49,6 +50,18 @@ interface GithubApi {
 
 //    =============================================================================================
 //    Follows queries
+
+    @GET("/users/{username}/followers")
+    fun getFollowers(@Path("username") userName: String,
+                     @Query("page") page: Int,
+                     @Query("per_page") count: Int,
+                     @Query("access_token") token: String): Single<List<Follower>>
+
+    @GET("/users/{username}/following")
+    fun getFollowing(@Path("username") userName: String,
+                     @Query("page") page: Int,
+                     @Query("per_page") count: Int,
+                     @Query("access_token") token: String): Single<List<Follower>>
 
 //    =============================================================================================
 //    Gists queries

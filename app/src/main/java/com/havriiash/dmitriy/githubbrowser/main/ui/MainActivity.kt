@@ -17,6 +17,7 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.databinding.ActivityMainBinding
 import com.havriiash.dmitriy.githubbrowser.databinding.NavHeaderMainBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -54,10 +55,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         viewModel.userObserver.removeObserver(userObserver)
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -78,6 +75,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.action_gists -> {
             }
             R.id.action_followers -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_container, FollowersFragment())
+                        .commit()
             }
             R.id.action_following -> {
             }

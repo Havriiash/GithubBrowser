@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
 import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.ui.NewsFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.MainVMProviderFactory
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import com.havriiash.dmitriy.spdilib.scopes.ActivityScope
@@ -32,5 +33,9 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [NewsFragmentModule::class])
     fun newsFragment(): NewsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [FollowersFragmentModule::class])
+    fun followersFragment(): FollowersFragment
 
 }

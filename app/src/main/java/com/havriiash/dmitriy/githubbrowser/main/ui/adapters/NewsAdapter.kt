@@ -11,9 +11,9 @@ import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
 import com.havriiash.dmitriy.githubbrowser.databinding.ItemListNewsBinding
 
-class NewsAdapter : PagedListAdapter<News, NewsAdapter.NewsViewHolder>(DIFFUTIL) {
+class NewsAdapter : PagedListAdapter<News, NewsAdapter.NewsViewHolder>(NewsDiffUtil) {
 
-    companion object DIFFUTIL : DiffUtil.ItemCallback<News>() {
+    private object NewsDiffUtil : DiffUtil.ItemCallback<News>() {
         override fun areItemsTheSame(oldItem: News?, newItem: News?): Boolean {
             return oldItem?.id == newItem?.id
         }

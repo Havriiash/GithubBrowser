@@ -3,10 +3,10 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.paging.PositionalDataSource
+import com.havriiash.dmitriy.githubbrowser.data.source.NewsDataSource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
 import com.havriiash.dmitriy.githubbrowser.main.models.impl.NewsModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.NewsModel
-import com.havriiash.dmitriy.githubbrowser.data.list.NewsDataStorage
 import com.havriiash.dmitriy.githubbrowser.main.vm.NewsViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.NewsVMProviderFactory
 import com.havriiash.dmitriy.spdilib.scopes.FragmentScope
@@ -30,6 +30,6 @@ interface NewsFragmentModule {
 
     @FragmentScope
     @Binds
-    fun bindNewsPositionalDataStorage(dataStorage: NewsDataStorage): PositionalDataSource<News>
+    fun bindNewsPositionalDataStorage(dataStorage: NewsDataSource): PositionalDataSource<News>
 
 }
