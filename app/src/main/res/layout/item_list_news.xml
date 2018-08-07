@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="news"
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.News" />
+    </data>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        app:cardCornerRadius="5dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/item_list_news_content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/item_list_news_actor_news_avatar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_news"
+                        app:avatarUrl="@{news.actor.avatarUrl}"/>
+
+                    <TextView
+                        android:id="@+id/item_list_news_date_news"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center|end"
+                        tools:text="date"
+                        android:text="@{news.createdAt.toString()}"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_list_news_text_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="newsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnewsnews"
+                    android:text="some news"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/item_list_news_progress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+        </FrameLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

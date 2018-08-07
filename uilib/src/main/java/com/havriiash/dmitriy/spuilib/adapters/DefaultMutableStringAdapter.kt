@@ -2,6 +2,7 @@ package com.havriiash.dmitriy.spuilib.adapters
 
 import android.view.ViewGroup
 import com.havriiash.dmitriy.spuilib.adapters.base.BaseMutableAdapter
+import com.havriiash.dmitriy.spuilib.adapters.base.BaseMutableAdapter.Companion.ITEM_DATA
 import com.havriiash.dmitriy.spuilib.adapters.viewholders.base.BaseViewHolder
 import com.havriiash.dmitriy.spuilib.adapters.viewholders.DefaultProgressViewHolder
 import com.havriiash.dmitriy.spuilib.adapters.viewholders.DefaultStringItemViewHolder
@@ -9,7 +10,7 @@ import com.havriiash.dmitriy.spuilib.adapters.viewholders.DefaultStringItemViewH
 class DefaultMutableStringAdapter(
         dataList: ArrayList<String?>,
         protected val subtitleList: ArrayList<String?>?
-) : BaseMutableAdapter<String, BaseViewHolder<String>>(dataList = dataList) {
+) : BaseMutableAdapter<String>(dataList = dataList) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<String> {
         return when (viewType) {

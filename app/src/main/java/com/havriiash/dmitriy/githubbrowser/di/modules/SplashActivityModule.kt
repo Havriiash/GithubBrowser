@@ -2,9 +2,9 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.havriiash.dmitriy.githubbrowser.main.models.SplashModel
-import com.havriiash.dmitriy.githubbrowser.main.models.SplashModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.vm.SplashVMProviderFactory
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.SplashModel
+import com.havriiash.dmitriy.githubbrowser.main.models.impl.SplashModelImpl
+import com.havriiash.dmitriy.githubbrowser.main.vm.factory.SplashVMProviderFactory
 import com.havriiash.dmitriy.githubbrowser.main.vm.SplashViewModel
 import com.havriiash.dmitriy.spdilib.keys.ViewModelKey
 import com.havriiash.dmitriy.spdilib.scopes.ActivityScope

@@ -8,9 +8,9 @@ abstract class BaseAdapter<D, VH : BaseViewHolder<D>>(
 ) : RecyclerView.Adapter<VH>(), IAdapter<D>, ISortable<D> {
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val item = dataList[position]
-        if (item != null) {
-            holder.setInfo(item)
+        val data = dataList[position]
+        if (data != null) {
+            holder.setInfo(data)
         }
     }
 

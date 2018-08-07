@@ -5,7 +5,7 @@ import android.content.Intent
 import android.util.Log
 import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
-import com.havriiash.dmitriy.githubbrowser.main.models.SplashModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.SplashModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.base.BaseViewModel
 import javax.inject.Inject
 

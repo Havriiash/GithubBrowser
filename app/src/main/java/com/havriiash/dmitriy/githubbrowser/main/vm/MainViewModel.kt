@@ -4,7 +4,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.MainModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.base.BaseViewModel
 import javax.inject.Inject
 
@@ -20,6 +20,7 @@ class MainViewModel
         disposables.add(
                 model.getUserInfo(preferences.accessToken!!)
                         .doOnSubscribe { userObserver.value = RemoteResource.loading() }
+                        .doAfterSuccess { user -> preferences.loggedUser = user }
                         .subscribe(
                                 { user -> userObserver.value = RemoteResource.success(user) },
                                 { throwable -> userObserver.value = RemoteResource.error(throwable) }

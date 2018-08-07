@@ -2,9 +2,9 @@ package com.havriiash.dmitriy.spuilib.adapters.base
 
 import com.havriiash.dmitriy.spuilib.adapters.viewholders.base.BaseViewHolder
 
-abstract class BaseMutableAdapter<D, VH: BaseViewHolder<D>>(
+abstract class BaseMutableAdapter<D>(
         dataList: ArrayList<D?>
-): BaseAdapter<D, VH>(dataList) {
+): BaseAdapter<D, BaseViewHolder<D>>(dataList) {
 
     companion object {
         const val ITEM_DATA = 1

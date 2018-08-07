@@ -1,9 +1,10 @@
-package com.havriiash.dmitriy.githubbrowser.main.vm
+package com.havriiash.dmitriy.githubbrowser.main.vm.factory
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
-import com.havriiash.dmitriy.githubbrowser.main.models.MainModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
+import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import javax.inject.Inject
 
 class MainVMProviderFactory

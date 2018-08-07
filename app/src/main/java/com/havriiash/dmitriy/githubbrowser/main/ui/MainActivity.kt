@@ -56,9 +56,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onResume() {
         super.onResume()
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.activity_main_container, NewsFragment())
-                .commit()
     }
 
     override fun onBackPressed() {
@@ -72,6 +69,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_news -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_container, NewsFragment())
+                        .commit()
             }
             R.id.action_repo -> {
             }

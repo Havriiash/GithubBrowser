@@ -2,10 +2,10 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.havriiash.dmitriy.githubbrowser.main.models.MainModel
-import com.havriiash.dmitriy.githubbrowser.main.models.MainModelImpl
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
+import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.ui.NewsFragment
-import com.havriiash.dmitriy.githubbrowser.main.vm.MainVMProviderFactory
+import com.havriiash.dmitriy.githubbrowser.main.vm.factory.MainVMProviderFactory
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import com.havriiash.dmitriy.spdilib.scopes.ActivityScope
 import com.havriiash.dmitriy.spdilib.scopes.FragmentScope
@@ -30,7 +30,7 @@ interface MainActivityModule {
 
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [NewFragmentModule::class])
+    @ContributesAndroidInjector(modules = [NewsFragmentModule::class])
     fun newsFragment(): NewsFragment
 
 }

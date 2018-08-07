@@ -1,12 +1,10 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote
 
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
 import io.reactivex.Single
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface GithubApi {
 
@@ -31,6 +29,14 @@ interface GithubApi {
     fun authorize(@Query("code") code: String,
                   @Query("client_id") clientId: String = Credentials.CLIENT_ID,
                   @Query("client_secret") clientSecret: String = Credentials.CLIENT_SECRET): Single<AuthResponse>
+//    =============================================================================================
+//    News queries
+
+    @GET("/users/{user}/received_events")
+    fun getNews(@Path("user") user: String,
+                @Query("page") page: Int,
+                @Query("per_page") count: Int,
+                @Query("access_token") token: String): Single<List<News>>
 
 //    =============================================================================================
 //    Repository queries
