@@ -7,6 +7,7 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -20,6 +21,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.UserDetailFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -67,25 +69,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_news -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_container, NewsFragment())
-                        .commit()
-            }
-            R.id.action_repo -> {
-            }
-            R.id.action_gists -> {
-            }
-            R.id.action_followers -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_container, FollowersFragment())
-                        .commit()
-            }
-            R.id.action_following -> {
-                supportFragmentManager.beginTransaction()
-                        .replace(R.id.activity_main_container, FollowingFragment())
-                        .commit()
-            }
+            R.id.action_news -> { navigate(NewsFragment(), false) }
+            R.id.action_repo -> { }
+            R.id.action_gists -> { navigate(UserDetailFragment.newInstance("octocat"), false) }
+            R.id.action_followers -> { navigate(FollowersFragment(), false) }
+            R.id.action_following -> { navigate(FollowingFragment(), false) }
             R.id.action_search -> {
             }
             R.id.action_settings -> {
@@ -95,6 +83,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun navigate(fragment: Fragment, isAddToBackStack: Boolean = true) {
+        if (isAddToBackStack) {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.activity_main_container, fragment)
+                    .addToBackStack(fragment::class.java.name)
+                    .commit()
+        } else {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.activity_main_container, fragment)
+                    .commit()
+        }
     }
 
     override fun showProgress(progress: Boolean) {

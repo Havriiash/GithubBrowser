@@ -2,6 +2,7 @@ package com.havriiash.dmitriy.githubbrowser.data.remote
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
 import io.reactivex.Single
@@ -47,6 +48,15 @@ interface GithubApi {
 
     @GET("/user")
     fun getUser(@Query("access_token") token: String): Single<User>
+
+    @GET("/users/{username}")
+    fun getUserByName(@Path("username") userName: String,
+                      @Query("access_token") token: String): Single<User>
+
+
+    @GET("/users/{username}/orgs")
+    fun getUserOrganizations(@Path("username") userName: String,
+                             @Query("access_token") token: String): Single<List<Organization>>
 
 //    =============================================================================================
 //    Follows queries

@@ -21,6 +21,8 @@
     <string name="drawer_settings">Settings</string>
     <string name="drawer_logout">Logout</string>
 
+    <!---->
+    <string name="joined_at_placeholder">Joined at: %1$s</string>
 
     <!--error view-->
     <string name="error_view_tap_to_retry">Tap to retry</string>

@@ -7,6 +7,7 @@ import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.UserDetailFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.MainVMProviderFactory
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import com.havriiash.dmitriy.spdilib.scopes.ActivityScope
@@ -43,4 +44,7 @@ interface MainActivityModule {
     @ContributesAndroidInjector(modules = [FollowingFragmentModule::class])
     fun followingFrragment(): FollowingFragment
 
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [UserDetailFragmentModule::class])
+    fun userDetailFragment(): UserDetailFragment
 }
