@@ -1,4 +1,4 @@
-package com.havriiash.dmitriy.githubbrowser.main.ui
+package com.havriiash.dmitriy.githubbrowser.main.ui.fragments
 
 import android.arch.lifecycle.ViewModelProviders
 import android.arch.paging.PagedListAdapter

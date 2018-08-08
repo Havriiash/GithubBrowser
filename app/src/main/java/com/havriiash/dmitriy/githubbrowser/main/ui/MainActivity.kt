@@ -18,6 +18,8 @@ import com.havriiash.dmitriy.githubbrowser.databinding.ActivityMainBinding
 import com.havriiash.dmitriy.githubbrowser.databinding.NavHeaderMainBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -80,6 +82,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         .commit()
             }
             R.id.action_following -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.activity_main_container, FollowingFragment())
+                        .commit()
             }
             R.id.action_search -> {
             }
