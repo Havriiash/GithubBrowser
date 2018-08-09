@@ -70,8 +70,10 @@ class SplashActivity : BaseActivity() {
     }
 
     private val authObserver: Observer<RemoteResource<String>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> { showProgress(true) }
+        when (it?.state) {
+            RemoteResource.State.LOADING -> {
+                showProgress(true)
+            }
             RemoteResource.State.SUCCESS -> {
                 startBrowser()
                 showProgress(false)

@@ -7,10 +7,10 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
@@ -76,13 +76,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_news -> { navigate(NewsFragment(), false, true) }
-            R.id.action_repo -> { }
-            R.id.action_gists -> { navigate(UserDetailFragment.newInstance("iandanforth"), false, true) }
-            R.id.action_followers -> { navigate(FollowersFragment(), false, true) }
-            R.id.action_following -> { navigate(FollowingFragment(), false, true) }
-            R.id.action_search -> { }
-            R.id.action_settings -> { }
+            R.id.action_news -> {
+                navigate(NewsFragment(), false, true)
+            }
+            R.id.action_repo -> {
+            }
+            R.id.action_gists -> {
+                navigate(UserDetailFragment.newInstance("iandanforth"), false, true)
+            }
+            R.id.action_followers -> {
+                navigate(FollowersFragment(), false, true)
+            }
+            R.id.action_following -> {
+                navigate(FollowingFragment(), false, true)
+            }
+            R.id.action_search -> {
+            }
+            R.id.action_settings -> {
+            }
             R.id.action_logout -> {
                 preferences.clearPreferences()
                 startActivity(Intent(this, SplashActivity::class.java))
@@ -93,14 +104,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    override fun showProgress(progress: Boolean) { }
+    override fun showProgress(progress: Boolean) {
+        headerBinding.drawerHeaderProgress.visibility = if (progress) View.VISIBLE else View.GONE
+    }
 
     private val userObserver: Observer<RemoteResource<User>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> {}
+        when (it?.state) {
+            RemoteResource.State.LOADING -> {
+                showProgress(true)
+            }
             RemoteResource.State.SUCCESS -> {
-                showProgress(false)
                 headerBinding.user = it.data
+                showProgress(false)
             }
             RemoteResource.State.ERROR -> {
                 showError(it.throwable?.message!!)
