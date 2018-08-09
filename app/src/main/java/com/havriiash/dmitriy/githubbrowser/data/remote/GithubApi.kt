@@ -1,9 +1,6 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote
 
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.*
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
 import io.reactivex.Single
 import retrofit2.http.*
@@ -57,6 +54,12 @@ interface GithubApi {
     @GET("/users/{username}/orgs")
     fun getUserOrganizations(@Path("username") userName: String,
                              @Query("access_token") token: String): Single<List<Organization>>
+
+    @GET("/users/{username}/starred")
+    fun getStarred(@Path("username") userName: String,
+                   @Query("page") page: Int,
+                   @Query("per_page") count: Int,
+                   @Query("access_token") token: String): Single<List<Starred>>
 
 //    =============================================================================================
 //    Follows queries

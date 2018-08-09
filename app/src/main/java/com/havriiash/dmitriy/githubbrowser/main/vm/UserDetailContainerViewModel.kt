@@ -4,15 +4,15 @@ import android.arch.lifecycle.MutableLiveData
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailContainerModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.base.BaseViewModel
 import javax.inject.Inject
 
-class UserDetailViewModel
+class UserDetailContainerViewModel
     @Inject constructor(
-            model: UserDetailModel,
+            model: UserDetailContainerModel,
             private val userName: String
-    ): BaseViewModel<UserDetailModel>(model) {
+    ): BaseViewModel<UserDetailContainerModel>(model) {
 
     val userObservable: MutableLiveData<RemoteResource<User>> = MutableLiveData()
     val organizationObservable: MutableLiveData<RemoteResource<List<Organization>>> = MutableLiveData()

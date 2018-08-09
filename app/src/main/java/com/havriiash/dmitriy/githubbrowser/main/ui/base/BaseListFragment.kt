@@ -5,6 +5,7 @@ import android.arch.paging.PagedList
 import android.arch.paging.PagedListAdapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
@@ -29,14 +30,17 @@ abstract class BaseListFragment<D, M : ModelLayer> : DaggerFragment() {
     protected abstract fun getAdapter(): PagedListAdapter<D, out RecyclerView.ViewHolder>
 
     protected fun setupListView() {
+        layoutListViewBinding.layoutRecyclerViewSwipeRefresh.setColorSchemeResources(R.color.colorPrimaryDark)
         layoutListViewBinding.layoutRecyclerViewSwipeRefresh.setOnRefreshListener { setupListView() }
 
         val pagedListConfig = PagedList.Config.Builder()
-                .setEnablePlaceholders(true)
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(pageSize)
                 .setPageSize(pageSize)
+                .setPrefetchDistance(pageSize / 2)
                 .build()
         val pagedList: PagedList<D> = PagedList.Builder(dataSource, pagedListConfig)
-                .setFetchExecutor(Constants.MainThreadExecutor()) // TODO: need to check executors because model uses rx inside
+                .setFetchExecutor(Constants.MainThreadExecutor()) // used main thread because model uses rx inside
                 .setNotifyExecutor(Constants.MainThreadExecutor())
                 .build()
 
