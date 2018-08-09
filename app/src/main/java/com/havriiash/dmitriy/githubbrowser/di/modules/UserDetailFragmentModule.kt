@@ -17,7 +17,7 @@ abstract class UserDetailFragmentModule {
 
     @FragmentScope
     @Binds
-    abstract fun bindUserDetailModel(userDetailModelImpl: UserDetailModelImpl):  UserDetailModel
+    abstract fun bindUserDetailModel(userDetailModelImpl: UserDetailModelImpl): UserDetailModel
 
     @FragmentScope
     @Binds
@@ -33,7 +33,7 @@ abstract class UserDetailFragmentModule {
         @JvmStatic
         @Provides
         fun provideUserName(userDetailFragment: UserDetailFragment): String {
-            return userDetailFragment.getUserName()
+            return userDetailFragment.arguments?.getString(UserDetailFragment.USER_PARAM, "")!!
         }
     }
 }

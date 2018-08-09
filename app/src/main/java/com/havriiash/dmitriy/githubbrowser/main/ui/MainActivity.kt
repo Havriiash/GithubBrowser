@@ -59,6 +59,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         viewModel.userObserver.removeObserver(userObserver)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (supportFragmentManager.fragments.isEmpty()) {
+            navigate(NewsFragment(), false, true)
+        }
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
@@ -69,44 +76,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_news -> { navigate(NewsFragment(), false) }
+            R.id.action_news -> { navigate(NewsFragment(), false, true) }
             R.id.action_repo -> { }
-            R.id.action_gists -> { navigate(UserDetailFragment.newInstance("octocat"), false) }
-            R.id.action_followers -> { navigate(FollowersFragment(), false) }
-            R.id.action_following -> { navigate(FollowingFragment(), false) }
-            R.id.action_search -> {
+            R.id.action_gists -> { navigate(UserDetailFragment.newInstance("iandanforth"), false, true) }
+            R.id.action_followers -> { navigate(FollowersFragment(), false, true) }
+            R.id.action_following -> { navigate(FollowingFragment(), false, true) }
+            R.id.action_search -> { }
+            R.id.action_settings -> { }
+            R.id.action_logout -> {
+                preferences.clearPreferences()
+                startActivity(Intent(this, SplashActivity::class.java))
+                finish()
             }
-            R.id.action_settings -> {
-            }
-            R.id.action_logout -> logout()
         }
-
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    fun navigate(fragment: Fragment, isAddToBackStack: Boolean = true) {
-        if (isAddToBackStack) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.activity_main_container, fragment)
-                    .addToBackStack(fragment::class.java.name)
-                    .commit()
-        } else {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.activity_main_container, fragment)
-                    .commit()
-        }
-    }
-
-    override fun showProgress(progress: Boolean) {
-
-    }
-
-    private fun logout() {
-        preferences.clearPreferences()
-        startActivity(Intent(this, SplashActivity::class.java))
-        finish()
-    }
+    override fun showProgress(progress: Boolean) { }
 
     private val userObserver: Observer<RemoteResource<User>> = Observer {
         when(it?.state) {

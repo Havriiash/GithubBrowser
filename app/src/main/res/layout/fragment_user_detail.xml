@@ -193,8 +193,40 @@
                                 android:padding="5dp"
                                 android:text="@{user.bio}"
                                 android:textSize="14sp"
-                                android:visibility="@{user.bio == `` ?  View.GONE : View.VISIBLE}"
+                                android:visibility="@{!TextUtils.isEmpty(user.bio) ? View.VISIBLE : View.GONE}"
                                 tools:text="bio" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="5dp"
+                                android:layout_margin="5dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autoLink="all"
+                                android:drawablePadding="5dp"
+                                android:drawableStart="@drawable/ic_company"
+                                android:gravity="start|center"
+                                android:padding="3dp"
+                                android:text="@{user.company}"
+                                android:textColor="@android:color/black"
+                                android:textSize="14sp"
+                                android:visibility="@{!TextUtils.isEmpty(user.company) ? View.VISIBLE : View.GONE}"
+                                tools:text="Company name" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:autoLink="all"
+                                android:drawablePadding="5dp"
+                                android:drawableStart="@drawable/ic_email"
+                                android:gravity="start|center"
+                                android:padding="3dp"
+                                android:text="@{user.email}"
+                                android:textSize="14sp"
+                                android:visibility="@{!TextUtils.isEmpty(user.email) ? View.VISIBLE : View.GONE}"
+                                tools:text="user@email.com" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -206,12 +238,13 @@
                                 android:padding="3dp"
                                 android:text="@{user.blog}"
                                 android:textSize="14sp"
-                                android:visibility="@{user.blog == `` ?  View.GONE : View.VISIBLE}"
+                                android:visibility="@{!TextUtils.isEmpty(user.blog) ? View.VISIBLE : View.GONE}"
                                 tools:text="http://www.google.com" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
                                 android:orientation="horizontal">
 
                                 <LinearLayout

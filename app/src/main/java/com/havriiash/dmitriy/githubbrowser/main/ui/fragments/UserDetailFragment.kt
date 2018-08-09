@@ -70,11 +70,6 @@ class UserDetailFragment: DaggerFragment() {
         viewModel.organizationObservable.removeObserver(organizationsObserver)
     }
 
-    fun getUserName(): String {
-        return arguments?.getString(UserDetailFragment.USER_PARAM, "")!!
-    }
-
-
     private val userObserver: Observer<RemoteResource<User>> = Observer {
         when(it?.state) {
             RemoteResource.State.LOADING -> { showProgress(true) }
