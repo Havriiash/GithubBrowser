@@ -82,10 +82,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.action_repo -> {
             }
             R.id.action_gists -> {
-                navigate(UserDetailContainerFragment.newInstance("ryasnoy"), false, true)
+                navigate(UserDetailContainerFragment.newInstance("iandanforth"), false, true)
             }
             R.id.action_followers -> {
-                navigate(FollowersFragment(), false, true)
+                navigate(FollowersFragment.create("octocat"), false, true)
             }
             R.id.action_following -> {
                 navigate(FollowingFragment(), false, true)

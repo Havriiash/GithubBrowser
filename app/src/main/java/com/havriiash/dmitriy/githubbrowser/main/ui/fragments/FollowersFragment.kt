@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
-import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.FollowersDataSource
@@ -17,12 +16,28 @@ import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowersModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.FollowersAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
+import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
 
 class FollowersFragment : BaseListFragment<Follower, FollowersModel>() {
 
+    companion object {
+        const val USER_PARAM = "FollowersFragment.Params.User"
+
+        fun create(userName: String): FollowersFragment {
+            val fragment = FollowersFragment()
+            val args = Bundle()
+            args.putString(USER_PARAM, userName)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+
     @Inject
-    protected lateinit var preferences: GithubBrowserPreferences
+    protected lateinit var containerActivity: ContainerActivity
 
     @Inject
     protected lateinit var followersSource: FollowersDataSource
@@ -45,10 +60,8 @@ class FollowersFragment : BaseListFragment<Follower, FollowersModel>() {
     override val pageSize: Int
         get() = 10
 
-    override fun getAdapter(): PagedListAdapter<Follower, out RecyclerView.ViewHolder> = FollowersAdapter(null)
-
-    fun getUserName(): String {
-        return preferences.loggedUser?.login!!
-    }
+    override fun getAdapter(): PagedListAdapter<Follower, out RecyclerView.ViewHolder> = FollowersAdapter(DefaultItemClickListener {
+        containerActivity.navigate(UserDetailContainerFragment.newInstance(it.login))
+    })
 
 }

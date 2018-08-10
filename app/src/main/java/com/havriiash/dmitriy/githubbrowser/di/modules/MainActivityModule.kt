@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.di.modules.user.UserDetailContainerFragmentModule
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
 import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
+import com.havriiash.dmitriy.githubbrowser.main.ui.MainActivity
+import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
@@ -31,6 +33,10 @@ interface MainActivityModule {
     @ActivityScope
     @Binds
     fun bindMainViewModelFactory(mainViewModelVMProviderFactory: MainVMProviderFactory): ViewModelProvider.Factory
+
+    @ActivityScope
+    @Binds
+    fun bindContainerActivity(mainActivity: MainActivity): ContainerActivity
 
 
     @FragmentScope

@@ -12,17 +12,14 @@ class FollowersDataSource
 ) : BaseListDataSource<Follower, FollowersModel>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Follower>) {
+        currentPage = 1
         disposables.add(
                 model.getFollowers(userName, 1, params.pageSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
                                 { followers ->
                                     sourceObservable.value = RemoteResource.success(followers)
-                                    if (params.placeholdersEnabled) {
-                                        callback.onResult(followers, params.requestedStartPosition, followers.size)
-                                    } else {
-                                        callback.onResult(followers, params.requestedStartPosition)
-                                    }
+                                    callback.onResult(followers, params.requestedStartPosition)
                                 },
                                 { throwable -> sourceObservable.value = RemoteResource.error(throwable) }
                         )
@@ -35,8 +32,14 @@ class FollowersDataSource
                 model.getFollowers(userName, currentPage, params.loadSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { followers -> sourceObservable.value = RemoteResource.success(followers) },
-                                { throwable -> sourceObservable.value = RemoteResource.error(throwable) }
+                                { followers ->
+                                    sourceObservable.value = RemoteResource.success(followers)
+                                    callback.onResult(followers)
+                                },
+                                { throwable ->
+                                    sourceObservable.value = RemoteResource.error(throwable)
+                                    --currentPage
+                                }
                         )
         )
     }

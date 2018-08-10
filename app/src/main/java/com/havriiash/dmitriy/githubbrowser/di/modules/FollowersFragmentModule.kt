@@ -28,9 +28,8 @@ abstract class FollowersFragmentModule {
         @JvmStatic
         @Provides
         fun provideUserName(followersFragment: FollowersFragment): String {
-            return followersFragment.getUserName()
+            return followersFragment.arguments?.getString(FollowersFragment.USER_PARAM, "")!!
         }
-
     }
 
 }

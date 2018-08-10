@@ -5,16 +5,16 @@ import android.widget.Toast
 import com.havriiash.dmitriy.githubbrowser.R
 import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity : DaggerAppCompatActivity() {
+abstract class BaseActivity : DaggerAppCompatActivity(), ContainerActivity {
 
-    fun showError(msg: String) {
+    override fun showError(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     abstract fun showProgress(progress: Boolean)
 
 
-    fun navigate(fragment: Fragment, isAddToBackStack: Boolean = true) {
+    override fun navigate(fragment: Fragment, isAddToBackStack: Boolean) {
         navigate(fragment, isAddToBackStack, false)
     }
 

@@ -47,10 +47,7 @@ class FollowersAdapter(
         }
 
         fun setInfo(data: Follower?) {
-            if (data == null) {
-                followerBinding.itemListFollowersProgress.visibility = View.VISIBLE
-            } else {
-                followerBinding.itemListFollowersProgress.visibility = View.GONE
+            if (data != null) {
                 if (itemClickListener != null) {
                     itemView.setOnClickListener { itemClickListener.onItemClick(data) }
                 }
