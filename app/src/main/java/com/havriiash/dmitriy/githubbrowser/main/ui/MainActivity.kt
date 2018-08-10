@@ -22,7 +22,6 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

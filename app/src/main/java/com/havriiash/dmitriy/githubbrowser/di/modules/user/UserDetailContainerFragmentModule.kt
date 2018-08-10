@@ -3,7 +3,7 @@ package com.havriiash.dmitriy.githubbrowser.di.modules.user
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailInfoFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailStarredFragment
 import com.havriiash.dmitriy.spdilib.scopes.ChildFragmentScope
 import com.havriiash.dmitriy.spdilib.scopes.FragmentScope
@@ -32,7 +32,7 @@ abstract class UserDetailContainerFragmentModule {
 
     @ChildFragmentScope
     @ContributesAndroidInjector(modules = [UserDetailFragmentModule::class])
-    abstract fun userDetailFragment(): UserDetailFragment
+    abstract fun userDetailFragment(): UserDetailInfoFragment
 
     @ChildFragmentScope
     @ContributesAndroidInjector(modules = [UserDetailStarredFragmentModule::class])

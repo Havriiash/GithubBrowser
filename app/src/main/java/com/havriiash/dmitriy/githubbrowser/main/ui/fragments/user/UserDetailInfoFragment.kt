@@ -19,7 +19,7 @@ import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
 import javax.inject.Inject
 
-class UserDetailFragment : BaseFragment<User>() {
+class UserDetailInfoFragment : BaseFragment<User>() {
 
     @Inject
     protected lateinit var factory: UserDetailVMFactory

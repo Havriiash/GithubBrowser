@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Starred
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.StarredDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
@@ -17,7 +17,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.StarredAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
 import javax.inject.Inject
 
-class UserDetailStarredFragment: BaseListFragment<Starred, UserDetailStarredModel>() {
+class UserDetailStarredFragment: BaseListFragment<User.Starred, UserDetailStarredModel>() {
 
     @Inject
     protected lateinit var starredDataSource: StarredDataSource
@@ -36,13 +36,13 @@ class UserDetailStarredFragment: BaseListFragment<Starred, UserDetailStarredMode
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
-    override val dataSource: BaseListDataSource<Starred, UserDetailStarredModel>
+    override val dataSource: BaseListDataSource<User.Starred, UserDetailStarredModel>
         get() = starredDataSource
 
     override val pageSize: Int
         get() = 10
 
-    override fun getAdapter(): PagedListAdapter<Starred, out RecyclerView.ViewHolder> = StarredAdapter(null)
+    override fun getAdapter(): PagedListAdapter<User.Starred, out RecyclerView.ViewHolder> = StarredAdapter(null)
 
 }
 

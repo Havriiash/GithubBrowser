@@ -11,7 +11,7 @@
 
         <variable
             name="starred"
-            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.Starred" />
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.User.Starred" />
     </data>
 
     <android.support.v7.widget.CardView

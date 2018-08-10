@@ -24,7 +24,7 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
 
     override val fragments: List<DaggerFragment>
-        get() = arrayListOf(UserDetailFragment(), UserDetailStarredFragment())
+        get() = arrayListOf(UserDetailInfoFragment(), UserDetailStarredFragment())
 
     override val titles: List<String>
         get() = arrayListOf("Info", "Starred")
