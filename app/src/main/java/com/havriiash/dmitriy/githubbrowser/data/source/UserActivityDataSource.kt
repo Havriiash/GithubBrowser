@@ -2,39 +2,39 @@ package com.havriiash.dmitriy.githubbrowser.data.source
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailStarredModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailActivityModel
 import javax.inject.Inject
 
-class StarredDataSource
+class UserActivityDataSource
     @Inject constructor(
-            model: UserDetailStarredModel,
+            model: UserDetailActivityModel,
             private val userName: String
-    ): BaseListDataSource<User.Starred, UserDetailStarredModel>(model) {
+    ): BaseListDataSource<User.UserActivity, UserDetailActivityModel>(model) {
 
-    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<User.Starred>) {
+    override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<User.UserActivity>) {
         currentPage = 1
         disposables.add(
-                model.getStarred(userName, currentPage, params.pageSize)
+                model.getUserActivity(userName, currentPage, params.pageSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { starred ->
-                                    sourceObservable.value = RemoteResource.success(starred)
-                                    callback.onResult(starred, params.requestedStartPosition)
+                                { activities ->
+                                    sourceObservable.value = RemoteResource.success(activities)
+                                    callback.onResult(activities, params.requestedStartPosition)
                                 },
                                 { throwable -> sourceObservable.value = RemoteResource.error(throwable) }
                         )
         )
     }
 
-    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<User.Starred>) {
+    override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<User.UserActivity>) {
         ++currentPage
         disposables.add(
-                model.getStarred(userName, currentPage, params.loadSize)
+                model.getUserActivity(userName, currentPage, params.loadSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { starred ->
-                                    sourceObservable.value = RemoteResource.success(starred)
-                                    callback.onResult(starred)
+                                { activities ->
+                                    sourceObservable.value = RemoteResource.success(activities)
+                                    callback.onResult(activities)
                                 },
                                 { throwable ->
                                     sourceObservable.value = RemoteResource.error(throwable)
@@ -43,7 +43,4 @@ class StarredDataSource
                         )
         )
     }
-
-
-
 }

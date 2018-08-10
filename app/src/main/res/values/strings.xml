@@ -15,6 +15,11 @@
     <string name="action_settings">Settings</string>
 
 
+    <!-- user detail -->
+    <string name="tab_info_title">Info</string>
+    <string name="tab_activity_title">Activity</string>
+    <string name="tab_starred_title">Starred</string>
+
     <!--drawer menu-->
     <string name="drawer_news">News</string>
     <string name="drawer_repos">Repositories</string>

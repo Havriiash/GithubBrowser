@@ -53,16 +53,21 @@ interface GithubApi {
     fun getUserByName(@Path("username") userName: String,
                       @Query("access_token") token: String): Single<User>
 
-
     @GET("/users/{username}/orgs")
     fun getUserOrganizations(@Path("username") userName: String,
                              @Query("access_token") token: String): Single<List<Organization>>
 
     @GET("/users/{username}/starred")
-    fun getStarred(@Path("username") userName: String,
-                   @Query("page") page: Int,
-                   @Query("per_page") count: Int,
-                   @Query("access_token") token: String): Single<List<User.Starred>>
+    fun getUserStarred(@Path("username") userName: String,
+                       @Query("page") page: Int,
+                       @Query("per_page") count: Int,
+                       @Query("access_token") token: String): Single<List<User.Starred>>
+
+    @GET("/users/{username}/events/public")
+    fun getUserActivity(@Path("username") userName: String,
+                        @Query("page") page: Int,
+                        @Query("per_page") count: Int,
+                        @Query("access_token") token: String): Single<List<User.UserActivity>>
 
 //    =============================================================================================
 //    Follows queries
