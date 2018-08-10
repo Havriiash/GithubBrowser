@@ -19,6 +19,7 @@
     <string name="tab_info_title">Info</string>
     <string name="tab_activity_title">Activity</string>
     <string name="tab_starred_title">Starred</string>
+    <string name="user_detail_organizations_text">Organizations</string>
 
     <!--drawer menu-->
     <string name="drawer_news">News</string>
