@@ -2,6 +2,8 @@
 <layout>
 
     <data>
+        <import type="com.havriiash.dmitriy.githubbrowser.utils.ExtensionsKt"/>
+
         <variable
             name="news"
             type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.News" />
@@ -46,7 +48,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center|end"
                         tools:text="date"
-                        android:text="@{news.createdAt.toString()}"/>
+                        android:text="@{ExtensionsKt.relativeTimeStr(news.createdAt)}"/>
 
                 </LinearLayout>
 

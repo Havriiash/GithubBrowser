@@ -16,24 +16,24 @@ data class News(
         val isPublic: Boolean,
         @SerializedName("created_at")
         val createdAt: Date
-)
+) {
+        data class NewsActor(
+                @SerializedName("id")
+                val id: Long,
+                @SerializedName("login")
+                val login: String,
+                @SerializedName("url")
+                val url: String,
+                @SerializedName("avatar_url")
+                val avatarUrl: String
+        )
 
-data class NewsActor(
-        @SerializedName("id")
-        val id: Long,
-        @SerializedName("login")
-        val login: String,
-        @SerializedName("url")
-        val url: String,
-        @SerializedName("avatar_url")
-        val avatarUrl: String
-)
-
-data class NewsRepo(
-        @SerializedName("id")
-        val id: Long,
-        @SerializedName("name")
-        val name: String,
-        @SerializedName("url")
-        val url: String
-)
+        data class NewsRepo(
+                @SerializedName("id")
+                val id: Long,
+                @SerializedName("name")
+                val name: String,
+                @SerializedName("url")
+                val url: String
+        )
+}
