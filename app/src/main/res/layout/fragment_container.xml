@@ -82,7 +82,6 @@
                         android:orientation="vertical">
 
                         <TextView
-                            tools:text="location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -92,10 +91,10 @@
                             android:text="@{user.location}"
                             android:textColor="@android:color/white"
                             android:textSize="14sp"
-                            android:visibility="@{!TextUtils.isEmpty(user.location) ? View.VISIBLE : View.GONE}" />
+                            android:visibility="@{!TextUtils.isEmpty(user.location) ? View.VISIBLE : View.GONE}"
+                            tools:text="location" />
 
                         <TextView
-                            tools:text="Joined at"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:drawablePadding="5dp"
@@ -104,7 +103,8 @@
                             android:padding="5dp"
                             android:text="@{String.format(@string/joined_at_placeholder, user.createdAt != null ? ExtensionsKt.yearMonthDayStr(user.createdAt) : `?`)}"
                             android:textColor="@android:color/white"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            tools:text="Joined at" />
 
                     </LinearLayout>
 
@@ -137,8 +137,8 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,11 +149,12 @@
                     android:id="@+id/fragment_container_tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:tabMode="fixed"
+                    app:tabBackground="@color/colorPrimaryDark"
                     app:tabGravity="fill"
-                    app:tabBackground="@color/colorPrimary"
                     app:tabIndicatorColor="@color/colorAccent"
-                    app:tabSelectedTextColor="@android:color/white" />
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@android:color/white"
+                    app:tabTextColor="@android:color/secondary_text_dark" />
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/fragment_container_view_pager"

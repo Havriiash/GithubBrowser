@@ -1,22 +1,15 @@
 package com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user
 
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseContainerFragment
-import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailContainerViewModel
-import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailContainerVMFactory
+import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
-class UserDetailContainerFragment: BaseContainerFragment() {
+class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerListener<User> {
+
     companion object {
         const val USER_PARAM = "UserDetailContainerFragment.Params.User"
 
@@ -30,26 +23,18 @@ class UserDetailContainerFragment: BaseContainerFragment() {
     }
 
 
-    @Inject
-    protected lateinit var factory: UserDetailContainerVMFactory
-
-    protected lateinit var viewModel: UserDetailContainerViewModel
-
-    private val userDetailFragment = UserDetailFragment()
-
-
     override val fragments: List<DaggerFragment>
-        get() = arrayListOf(userDetailFragment, UserDetailStarredFragment())
+        get() = arrayListOf(UserDetailFragment(), UserDetailStarredFragment())
 
     override val titles: List<String>
         get() = arrayListOf("Info", "Starred")
 
     override val pageChangeListener: ViewPager.OnPageChangeListener
-        get() = object: ViewPager.OnPageChangeListener {
+        get() = object : ViewPager.OnPageChangeListener {
 
-            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 val prevTitle = containerBinding.fragmentUserDetailToolbar.title
@@ -58,68 +43,19 @@ class UserDetailContainerFragment: BaseContainerFragment() {
         }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewModel = ViewModelProviders.of(this, factory).get(UserDetailContainerViewModel::class.java)
-        return super.onCreateView(inflater, container, savedInstanceState)
+    override fun onDataLoaded(data: User) {
+        containerBinding.user = data
+        containerBinding.fragmentUserDetailToolbar.title = data.login
+        containerBinding.fragmentUserDetailProgressToolbar.visibility = View.GONE
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.userObservable.observe(this, userObserver)
-        viewModel.organizationObservable.observe(this, organizationsObserver)
-
-        if (viewModel.userObservable.value == null) {
-            refreshInfo()
-        }
+    override fun onError(msg: String) {
+        onProgress(true)
     }
 
-    override fun onPause() {
-        super.onPause()
-        viewModel.userObservable.removeObserver(userObserver)
-        viewModel.organizationObservable.removeObserver(organizationsObserver)
-    }
-
-
-    fun refreshInfo() {
-        viewModel.getUserInfo()
-    }
-
-    private fun showProgress(progress: Boolean) {
+    override fun onProgress(progress: Boolean) {
         val visibility = if (progress) View.VISIBLE else View.GONE
         containerBinding.fragmentUserDetailProgressToolbar.visibility = visibility
     }
 
-    private fun showContent(data: User) {
-        showProgress(false)
-        containerBinding.user = data
-        containerBinding.fragmentUserDetailToolbar.title = data.login
-        userDetailFragment.showContent(data)
-    }
-
-    private fun showError(msg: String) {
-        showProgress(false)
-        userDetailFragment.showError(msg)
-    }
-
-
-    private val userObserver: Observer<RemoteResource<User>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> { showProgress(true) }
-            RemoteResource.State.SUCCESS -> {
-                showContent(it.data!!)
-                if (viewModel.organizationObservable.value == null) {
-                    viewModel.getOrganizations()
-                }
-            }
-            RemoteResource.State.ERROR -> { showError(it.throwable?.message!!) }
-        }
-    }
-
-    private val organizationsObserver: Observer<RemoteResource<List<Organization>>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> { }
-            RemoteResource.State.SUCCESS -> { userDetailFragment.showOrganizations(it.data!!) }
-            RemoteResource.State.ERROR -> { showError(it.throwable?.message!!) }
-        }
-    }
 }

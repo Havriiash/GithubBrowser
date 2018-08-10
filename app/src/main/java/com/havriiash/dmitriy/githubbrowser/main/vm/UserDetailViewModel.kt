@@ -4,15 +4,15 @@ import android.arch.lifecycle.MutableLiveData
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailContainerModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.base.BaseViewModel
 import javax.inject.Inject
 
-class UserDetailContainerViewModel
-    @Inject constructor(
-            model: UserDetailContainerModel,
-            private val userName: String
-    ): BaseViewModel<UserDetailContainerModel>(model) {
+class UserDetailViewModel
+@Inject constructor(
+        model: UserDetailModel,
+        private val userName: String
+) : BaseViewModel<UserDetailModel>(model) {
 
     val userObservable: MutableLiveData<RemoteResource<User>> = MutableLiveData()
     val organizationObservable: MutableLiveData<RemoteResource<List<Organization>>> = MutableLiveData()
@@ -22,7 +22,7 @@ class UserDetailContainerViewModel
                 model.getUserInfo(userName)
                         .doOnSubscribe { userObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { user-> userObservable.value = RemoteResource.success(user) },
+                                { user -> userObservable.value = RemoteResource.success(user) },
                                 { throwable -> userObservable.value = RemoteResource.error(throwable) }
                         )
         )

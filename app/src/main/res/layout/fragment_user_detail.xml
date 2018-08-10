@@ -16,274 +16,280 @@
             type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.User" />
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/fragment_user_detail_progress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <ProgressBar
-                style="@android:style/Widget.Material.ProgressBar.Horizontal"
+            <LinearLayout
+                android:id="@+id/fragment_user_detail_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:indeterminate="true" />
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <ProgressBar
+                    style="@android:style/Widget.Material.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true" />
 
-        <LinearLayout
-            android:id="@+id/fragment_user_detail_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            </LinearLayout>
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
+                android:id="@+id/fragment_user_detail_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="3dp">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="@{user.name}"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Name" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="@{user.bio}"
-                        android:textSize="14sp"
-                        android:visibility="@{!TextUtils.isEmpty(user.bio) ? View.VISIBLE : View.GONE}"
-                        tools:text="bio" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        android:layout_margin="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autoLink="all"
-                        android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/ic_company"
-                        android:gravity="start|center"
-                        android:padding="3dp"
-                        android:text="@{user.company}"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
-                        android:visibility="@{!TextUtils.isEmpty(user.company) ? View.VISIBLE : View.GONE}"
-                        tools:text="Company name" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autoLink="all"
-                        android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/ic_email"
-                        android:gravity="start|center"
-                        android:padding="3dp"
-                        android:text="@{user.email}"
-                        android:textSize="14sp"
-                        android:visibility="@{!TextUtils.isEmpty(user.email) ? View.VISIBLE : View.GONE}"
-                        tools:text="user@email.com" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autoLink="all"
-                        android:drawablePadding="5dp"
-                        android:drawableStart="@drawable/ic_link"
-                        android:gravity="start|center"
-                        android:padding="3dp"
-                        android:text="@{user.blog}"
-                        android:textSize="14sp"
-                        android:visibility="@{!TextUtils.isEmpty(user.blog) ? View.VISIBLE : View.GONE}"
-                        tools:text="http://www.google.com" />
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="3dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
-                        <LinearLayout
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@{user.name}"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="Name" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="@{user.bio}"
+                            android:textSize="14sp"
+                            android:visibility="@{!TextUtils.isEmpty(user.bio) ? View.VISIBLE : View.GONE}"
+                            tools:text="bio" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="5dp"
+                            android:layout_margin="5dp" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:padding="5dp">
+                            android:autoLink="all"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_company"
+                            android:gravity="start|center"
+                            android:padding="3dp"
+                            android:text="@{user.company}"
+                            android:textColor="@android:color/black"
+                            android:textSize="14sp"
+                            android:visibility="@{!TextUtils.isEmpty(user.company) ? View.VISIBLE : View.GONE}"
+                            tools:text="Company name" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@{String.valueOf(user.followers)}"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/drawer_followers"
-                                android:textColor="@android:color/black"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:padding="5dp">
+                            android:autoLink="all"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_email"
+                            android:gravity="start|center"
+                            android:padding="3dp"
+                            android:text="@{user.email}"
+                            android:textSize="14sp"
+                            android:visibility="@{!TextUtils.isEmpty(user.email) ? View.VISIBLE : View.GONE}"
+                            tools:text="user@email.com" />
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@{String.valueOf(user.following)}"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/drawer_following"
-                                android:textColor="@android:color/black"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:padding="5dp">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@{String.valueOf(user.publicRepos)}"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/drawer_repos"
-                                android:textColor="@android:color/black"
-                                android:textSize="14sp" />
-
-                        </LinearLayout>
+                            android:autoLink="all"
+                            android:drawablePadding="5dp"
+                            android:drawableStart="@drawable/ic_link"
+                            android:gravity="start|center"
+                            android:padding="3dp"
+                            android:text="@{user.blog}"
+                            android:textSize="14sp"
+                            android:visibility="@{!TextUtils.isEmpty(user.blog) ? View.VISIBLE : View.GONE}"
+                            tools:text="http://www.google.com" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="?android:attr/selectableItemBackgroundBorderless"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:orientation="vertical"
-                            android:padding="5dp">
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@{String.valueOf(user.publicGists)}"
-                                android:textColor="@android:color/black"
-                                android:textSize="16sp" />
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:padding="5dp">
 
-                            <TextView
-                                android:layout_width="match_parent"
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@{String.valueOf(user.followers)}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/drawer_followers"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/drawer_gists"
-                                android:textColor="@android:color/black"
-                                android:textSize="14sp" />
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@{String.valueOf(user.following)}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/drawer_following"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@{String.valueOf(user.publicRepos)}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/drawer_repos"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="?android:attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@{String.valueOf(user.publicGists)}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="@string/drawer_gists"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </android.support.v7.widget.CardView>
 
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/fragment_user_detail_content_organizations"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:cardCornerRadius="3dp">
-
-                <LinearLayout
+                <android.support.v7.widget.CardView
+                    android:id="@+id/fragment_user_detail_content_organizations"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="3dp">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:text="Organizations"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="16sp" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/fragment_user_detail_content_organizations_rv"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="Organizations"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="16sp" />
 
-            </android.support.v7.widget.CardView>
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/fragment_user_detail_content_organizations_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <com.havriiash.dmitriy.githubbrowser.main.ui.views.ErrorView
+                android:id="@+id/fragment_user_detail_errorView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:errorText="Some error"
+                app:retryBtn="true" />
 
         </LinearLayout>
 
-        <com.havriiash.dmitriy.githubbrowser.main.ui.views.ErrorView
-            android:id="@+id/fragment_user_detail_errorView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            app:errorText="Some error"
-            app:retryBtn="true" />
-
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </layout>
