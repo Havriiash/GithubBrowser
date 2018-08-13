@@ -20,6 +20,8 @@ import javax.inject.Inject
 class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerListener<User> {
 
     companion object {
+        private const val CURRENT_PAGE_PARAM = "UserDetailContainerFragment.Params.CurrentPage"
+
         const val USER_PARAM = "UserDetailContainerFragment.Params.User"
 
         fun newInstance(userName: String): UserDetailContainerFragment {
@@ -30,6 +32,12 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
             return fragment
         }
     }
+
+
+    @Inject
+    protected lateinit var userName: String
+
+    protected var currentPage: Int = 0
 
 
     override val fragments: List<DaggerFragment>
@@ -45,7 +53,10 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
-            override fun onPageSelected(position: Int) { }
+            override fun onPageSelected(position: Int) {
+                currentPage = position
+                containerActivity.getContainerSupportActionBar()?.title = "$userName / ${titles[position]}"
+            }
         }
 
 
@@ -56,11 +67,15 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, factory).get(UserDetailViewModel::class.java)
+        if (savedInstanceState != null) {
+            currentPage = savedInstanceState.getInt(CURRENT_PAGE_PARAM, 0)
+        }
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onResume() {
         super.onResume()
+        pageChangeListener.onPageSelected(currentPage)
         viewModel.userObservable.observe(this, userObserver)
 
         if (viewModel.userObservable.value == null) {
@@ -73,9 +88,13 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
         viewModel.userObservable.removeObserver(userObserver)
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(CURRENT_PAGE_PARAM, currentPage)
+    }
+
     override fun onDataLoaded(data: User) {
         containerBinding.user = data
-        containerBinding.fragmentUserDetailToolbar.title = data.login
         containerBinding.fragmentUserDetailProgressToolbar.visibility = View.GONE
     }
 

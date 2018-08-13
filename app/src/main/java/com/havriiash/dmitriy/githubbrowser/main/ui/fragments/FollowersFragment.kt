@@ -11,12 +11,10 @@ import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.FollowersDataSource
-import com.havriiash.dmitriy.githubbrowser.databinding.FragmentFollowersBinding
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowersModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.FollowersAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
 import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
@@ -37,22 +35,21 @@ class FollowersFragment : BaseListFragment<Follower, FollowersModel>() {
 
 
     @Inject
-    protected lateinit var containerActivity: ContainerActivity
-
-    @Inject
     protected lateinit var followersSource: FollowersDataSource
 
-    private lateinit var binding: FragmentFollowersBinding
+    @Inject
+    protected lateinit var userName: String
+
+    private lateinit var binding: LayoutRecyclerViewBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_followers, container, false)
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
         setupListView()
         return binding.root
     }
 
     override val layoutListViewBinding: LayoutRecyclerViewBinding
-        get() = binding.fragmentFollowersRecyclerViewLayout!!
+        get() = binding
 
     override val dataSource: BaseListDataSource<Follower, FollowersModel>
         get() = followersSource
@@ -64,4 +61,11 @@ class FollowersFragment : BaseListFragment<Follower, FollowersModel>() {
         containerActivity.navigate(UserDetailContainerFragment.newInstance(it.login))
     })
 
+    override fun getToolbarTitle(): CharSequence {
+        return if (containerActivity.isMain()) {
+            "My followers"
+        } else {
+            "Followers / $userName"
+        }
+    }
 }

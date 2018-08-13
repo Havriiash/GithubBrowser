@@ -12,7 +12,6 @@ import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.NewsDataSource
-import com.havriiash.dmitriy.githubbrowser.databinding.FragmentNewsBinding
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.NewsModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.NewsAdapter
@@ -31,19 +30,19 @@ class NewsFragment : BaseListFragment<News, NewsModel>() {
 
     private lateinit var viewModel: NewsViewModel
 
-    private lateinit var binding: FragmentNewsBinding
+    private lateinit var binding: LayoutRecyclerViewBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, factory).get(NewsViewModel::class.java)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_news, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
 
         setupListView()
         return binding.root
     }
 
     override val layoutListViewBinding: LayoutRecyclerViewBinding
-        get() = binding.fragmentNewsLayoutRecyclerView!!
+        get() = binding
 
     override val dataSource: BaseListDataSource<News, NewsModel>
         get() = newsSource
@@ -52,4 +51,8 @@ class NewsFragment : BaseListFragment<News, NewsModel>() {
         get() = 10
 
     override fun getAdapter(): PagedListAdapter<News, out RecyclerView.ViewHolder> = NewsAdapter()
+
+    override fun getToolbarTitle(): CharSequence {
+        return "NewsFragment"
+    }
 }

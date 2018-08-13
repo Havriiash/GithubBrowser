@@ -32,6 +32,7 @@ class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetail
         return binding.root
     }
 
+
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
@@ -42,5 +43,7 @@ class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetail
         get() = 10
 
     override fun getAdapter(): PagedListAdapter<User.UserActivity, out RecyclerView.ViewHolder> = UserActivityAdapter(null)
+
+    override fun setupToolbar() { /* container fragment takes this work */ }
 
 }

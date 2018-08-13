@@ -50,6 +50,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding.activityMainNavigation.addHeaderView(headerBinding.root)
         activity_main_navigation.setNavigationItemSelectedListener(this)
 
+        setSupportActionBar(binding.activityMainToolbar)
+
         viewModel.userObserver.observe(this, userObserver)
         viewModel.getUserInfo()
     }
@@ -64,6 +66,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (supportFragmentManager.fragments.isEmpty()) {
             navigate(NewsFragment(), false, true)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home) {
+            if (isMain()) {
+                drawer_layout.openDrawer(GravityCompat.START)
+            } else {
+                onBackPressed()
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {

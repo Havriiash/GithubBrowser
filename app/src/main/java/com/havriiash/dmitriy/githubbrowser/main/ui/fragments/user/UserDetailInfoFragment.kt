@@ -14,7 +14,9 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.databinding.FragmentUserDetailBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.OrganizationsAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
 import javax.inject.Inject
@@ -27,7 +29,10 @@ class UserDetailInfoFragment : BaseFragment<User>() {
     protected lateinit var viewModel: UserDetailViewModel
 
     @Inject
-    lateinit var containerFragment: FragmentContainerListener<User>
+    protected lateinit var containerFragment: FragmentContainerListener<User>
+
+    @Inject
+    protected lateinit var userName: String
 
     private lateinit var binding: FragmentUserDetailBinding
 
@@ -36,6 +41,9 @@ class UserDetailInfoFragment : BaseFragment<User>() {
         viewModel = ViewModelProviders.of(this, factory).get(UserDetailViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_detail, container, false)
 
+        binding.fragmentUserDetailFollowers.setOnClickListener {
+            containerActivity.navigate(FollowersFragment.create(userName))
+        }
         return binding.root
     }
 
@@ -79,6 +87,8 @@ class UserDetailInfoFragment : BaseFragment<User>() {
         binding.user = data
         binding.fragmentUserDetailContent.visibility = View.VISIBLE
     }
+
+    override fun setupToolbar() { /* container fragment takes this work */ }
 
     private fun showOrganizations(organizations: List<Organization>) {
         if (!organizations.isEmpty()) {

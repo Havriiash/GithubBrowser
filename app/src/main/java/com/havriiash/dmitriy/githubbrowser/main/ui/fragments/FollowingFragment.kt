@@ -12,7 +12,6 @@ import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.FollowingDataSource
-import com.havriiash.dmitriy.githubbrowser.databinding.FragmentFollowersBinding
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowingModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.FollowersAdapter
@@ -27,17 +26,17 @@ class FollowingFragment: BaseListFragment<Follower, FollowingModel>() {
     @Inject
     protected lateinit var followingSource: FollowingDataSource
 
-    private lateinit var binding: FragmentFollowersBinding
+    private lateinit var binding: LayoutRecyclerViewBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_followers, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
 
         setupListView()
         return binding.root
     }
 
     override val layoutListViewBinding: LayoutRecyclerViewBinding
-        get() = binding.fragmentFollowersRecyclerViewLayout!!
+        get() = binding
 
     override val dataSource: BaseListDataSource<Follower, FollowingModel>
         get() = followingSource
@@ -51,4 +50,11 @@ class FollowingFragment: BaseListFragment<Follower, FollowingModel>() {
         return preferences.loggedUser?.login!!
     }
 
+    override fun getToolbarTitle(): CharSequence {
+        return if (containerActivity.isMain()) {
+            "My following"
+        } else {
+            "Following / ${getUserName()}"
+        }
+    }
 }

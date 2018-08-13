@@ -11,9 +11,8 @@ import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.global.Constants
 import com.havriiash.dmitriy.githubbrowser.main.models.ModelLayer
-import dagger.android.support.DaggerFragment
 
-abstract class BaseListFragment<D, M : ModelLayer> : DaggerFragment() {
+abstract class BaseListFragment<D, M : ModelLayer> : BaseFragment<D>() {
 
     protected abstract val layoutListViewBinding: LayoutRecyclerViewBinding
 
@@ -55,10 +54,10 @@ abstract class BaseListFragment<D, M : ModelLayer> : DaggerFragment() {
     protected val dataStorageObserver: Observer<RemoteResource<List<D>>> = Observer {
         when (it?.state) {
             RemoteResource.State.LOADING -> {
-                layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = true
+                showProgress(true)
             }
             RemoteResource.State.SUCCESS -> {
-                layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = false
+                showProgress(false)
             }
             RemoteResource.State.ERROR -> {
                 showError(it.throwable?.message!!)
@@ -67,17 +66,23 @@ abstract class BaseListFragment<D, M : ModelLayer> : DaggerFragment() {
     }
 
     protected fun showList() {
-        layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = true
+        showProgress(true)
         layoutListViewBinding.layoutRecyclerViewErrorView.visibility = View.GONE
         layoutListViewBinding.layoutRecyclerViewRv.visibility = View.VISIBLE
     }
 
-    protected fun showError(msg: String) {
+    override fun showError(msg: String) {
         layoutListViewBinding.layoutRecyclerViewRv.visibility = View.GONE
-        layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = false
+        showProgress(false)
 
         layoutListViewBinding.layoutRecyclerViewErrorView.setErrorText(msg)
         layoutListViewBinding.layoutRecyclerViewErrorView.setOnRetryClickListener(View.OnClickListener { _ -> setupListView() })
         layoutListViewBinding.layoutRecyclerViewErrorView.visibility = View.VISIBLE
     }
+
+    override fun showProgress(progress: Boolean) {
+        layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = progress
+    }
+
+    override fun showContent(data: D) { }
 }

@@ -44,5 +44,7 @@ class UserDetailStarredFragment: BaseListFragment<User.Starred, UserDetailStarre
 
     override fun getAdapter(): PagedListAdapter<User.Starred, out RecyclerView.ViewHolder> = StarredAdapter(null)
 
+    override fun setupToolbar() { /* container fragment takes this work */ }
+
 }
 

@@ -10,8 +10,13 @@ import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.databinding.FragmentContainerBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.PagerFragmentAdapter
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 abstract class BaseContainerFragment: DaggerFragment() {
+
+    @Inject
+    protected lateinit var containerActivity: ContainerActivity
+
 
     abstract val fragments: List<DaggerFragment>
 
@@ -28,6 +33,7 @@ abstract class BaseContainerFragment: DaggerFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         containerBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_container, container, false)
         setupPager()
+        setupToolbar()
         return containerBinding.root
     }
 
@@ -38,4 +44,12 @@ abstract class BaseContainerFragment: DaggerFragment() {
         containerBinding.fragmentContainerTabLayout.setupWithViewPager(containerBinding.fragmentContainerViewPager)
     }
 
+    protected fun setupToolbar() {
+        if (containerActivity.isMain()) {
+            containerActivity.getContainerSupportActionBar()?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        } else {
+            containerActivity.getContainerSupportActionBar()?.setHomeAsUpIndicator(R.drawable.ic_back)
+        }
+        containerActivity.getContainerSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+    }
 }
