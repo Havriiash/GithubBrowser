@@ -21,6 +21,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoListFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -93,6 +94,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 navigate(NewsFragment(), false, true)
             }
             R.id.action_repo -> {
+                navigate(RepoListFragment.create(preferences.loggedUser?.login!!), false, true)
             }
             R.id.action_gists -> {
 

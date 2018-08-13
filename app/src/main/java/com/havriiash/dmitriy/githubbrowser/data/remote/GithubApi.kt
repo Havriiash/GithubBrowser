@@ -1,9 +1,6 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote
 
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.News
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.*
 import com.havriiash.dmitriy.githubbrowser.data.remote.responses.AuthResponse
 import io.reactivex.Single
 import retrofit2.http.*
@@ -42,6 +39,17 @@ interface GithubApi {
 
 //    =============================================================================================
 //    Repository queries
+
+    @GET("/users/{username}/repos")
+    fun getUserRepos(@Path("username") userName: String,
+                     @Query("page") page: Int,
+                     @Query("per_page") count: Int,
+                     @Query("access_token") token: String): Single<List<Repo>>
+
+    @GET("/repos/{username}/{repo_name}")
+    fun getUserRepo(@Path("username") userName: String,
+                    @Path("repo_name") repoName: String,
+                    @Query("access_token") token: String): Single<Repo>
 
 //    =============================================================================================
 //    User queries

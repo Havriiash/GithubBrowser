@@ -189,6 +189,7 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/fragment_user_detail_repos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"

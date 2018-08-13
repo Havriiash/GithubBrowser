@@ -2,24 +2,24 @@ package com.havriiash.dmitriy.githubbrowser.data.source
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.IShortRepoInfo
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailStarredModel
+import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoModel
 import javax.inject.Inject
 
-class StarredDataSource
-    @Inject constructor(
-            model: UserDetailStarredModel,
-            private val userName: String
-    ): BaseListDataSource<IShortRepoInfo, UserDetailStarredModel>(model) {
+class RepoDataSource
+@Inject constructor(
+        model: RepoModel,
+        private val userName: String
+) : BaseListDataSource<IShortRepoInfo, RepoModel>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<IShortRepoInfo>) {
         currentPage = 1
         disposables.add(
-                model.getStarred(userName, currentPage, params.pageSize)
+                model.getUserRepos(userName, currentPage, params.pageSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { starred ->
-                                    sourceObservable.value = RemoteResource.success(starred)
-                                    callback.onResult(starred, params.requestedStartPosition)
+                                { repos ->
+                                    sourceObservable.value = RemoteResource.success(repos)
+                                    callback.onResult(repos, 0)
                                 },
                                 { throwable -> sourceObservable.value = RemoteResource.error(throwable) }
                         )
@@ -29,12 +29,12 @@ class StarredDataSource
     override fun loadRange(params: LoadRangeParams, callback: LoadRangeCallback<IShortRepoInfo>) {
         ++currentPage
         disposables.add(
-                model.getStarred(userName, currentPage, params.loadSize)
+                model.getUserRepos(userName, currentPage, params.loadSize)
                         .doOnSubscribe { sourceObservable.value = RemoteResource.loading() }
                         .subscribe(
-                                { starred ->
-                                    sourceObservable.value = RemoteResource.success(starred)
-                                    callback.onResult(starred)
+                                { repos ->
+                                    sourceObservable.value = RemoteResource.success(repos)
+                                    callback.onResult(repos)
                                 },
                                 { throwable ->
                                     sourceObservable.value = RemoteResource.error(throwable)
@@ -43,7 +43,4 @@ class StarredDataSource
                         )
         )
     }
-
-
-
 }

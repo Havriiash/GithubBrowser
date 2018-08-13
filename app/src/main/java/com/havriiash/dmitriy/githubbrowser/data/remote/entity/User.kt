@@ -1,7 +1,7 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote.entity
 
 import com.google.gson.annotations.SerializedName
-import java.util.Date
+import java.util.*
 
 data class User(
         @SerializedName("login")
@@ -94,68 +94,90 @@ data class User(
         @SerializedName("updated_at")
         val updatedAt: Date
 ) {
-        data class UserActivity(
-                @SerializedName("id")
-                val id: String,
-                @SerializedName("type")
-                val type: String,
-                @SerializedName("actor")
-                val actor: Actor,
-                @SerializedName("repo")
-                val repo: Repo,
-                //        paylod
-                @SerializedName("public")
-                val isPublic: Boolean,
-                @SerializedName("created_at")
-                val createdAt: Date
-        ) {
-                data class Actor(
-                        @SerializedName("id")
-                        val id: Long,
-                        @SerializedName("login")
-                        val login: String,
-                        @SerializedName("display_login")
-                        val displayLogin: String,
-                        @SerializedName("gravatar_id")
-                        val gravatarId: String,
-                        @SerializedName("url")
-                        val url: String,
-                        @SerializedName("avatar_url")
-                        val avatarUrl: String
-                )
-
-                data class Repo(
-                        @SerializedName("id")
-                        val id: Long,
-                        @SerializedName("name")
-                        val name: String,
-                        @SerializedName("url")
-                        val url: String
-                )
-        }
-
-        data class Starred(
+    data class UserActivity(
+            @SerializedName("id")
+            val id: String,
+            @SerializedName("type")
+            val type: String,
+            @SerializedName("actor")
+            val actor: Actor,
+            @SerializedName("repo")
+            val repo: Repo,
+            //        paylod
+            @SerializedName("public")
+            val isPublic: Boolean,
+            @SerializedName("created_at")
+            val createdAt: Date
+    ) {
+        data class Actor(
                 @SerializedName("id")
                 val id: Long,
-                @SerializedName("node_id")
-                val nodeId: String,
+                @SerializedName("login")
+                val login: String,
+                @SerializedName("display_login")
+                val displayLogin: String,
+                @SerializedName("gravatar_id")
+                val gravatarId: String,
+                @SerializedName("url")
+                val url: String,
+                @SerializedName("avatar_url")
+                val avatarUrl: String
+        )
+
+        data class Repo(
+                @SerializedName("id")
+                val id: Long,
                 @SerializedName("name")
                 val name: String,
-                @SerializedName("full_name")
-                val fullName: String,
-                @SerializedName("owner")
-                val owner: Follower,
-                @SerializedName("private")
-                val isPrivate: Boolean,
-                @SerializedName("html_url")
-                val htmlUrl: String,
-                @SerializedName("description")
-                val description: String,
-                @SerializedName("stargazers_count")
-                val stargazersCount: Int,
-                @SerializedName("forks")
-                val forks: Int,
-                @SerializedName("language")
-                val language: String
+                @SerializedName("url")
+                val url: String
         )
+    }
+
+    data class Starred(
+            @SerializedName("id")
+            val id: Long,
+            @SerializedName("node_id")
+            val nodeId: String,
+            @SerializedName("name")
+            val name: String,
+            @SerializedName("full_name")
+            val fullName: String,
+            @SerializedName("owner")
+            val owner: Follower,
+            @SerializedName("private")
+            val isPrivate: Boolean,
+            @SerializedName("html_url")
+            val htmlUrl: String,
+            @SerializedName("description")
+            val description: String,
+            @SerializedName("stargazers_count")
+            val stargazersCount: Int,
+            @SerializedName("forks")
+            val forks: Int,
+            @SerializedName("language")
+            val language: String
+    ) : IShortRepoInfo {
+        override fun getRepoId(): Long = id
+
+        override fun getRepoNodeId(): String = nodeId
+
+        override fun getRepoName(): String = name
+
+        override fun getRepoFullName(): String = fullName
+
+        override fun getRepoOwner(): Follower = owner
+
+        override fun getRepoIsPrivate(): Boolean = isPrivate
+
+        override fun getRepoHtmlUrl(): String = htmlUrl
+
+        override fun getRepoDescription(): String = description
+
+        override fun getRepoStargazersCount(): Int = stargazersCount
+
+        override fun getRepoForksCount(): Int = forks
+
+        override fun getRepoLanguage(): String = language
+    }
 }

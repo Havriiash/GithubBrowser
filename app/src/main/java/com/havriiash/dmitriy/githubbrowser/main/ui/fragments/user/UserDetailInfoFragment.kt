@@ -17,8 +17,10 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoListFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
+import com.havriiash.dmitriy.githubbrowser.utils.setViewEnabled
 import javax.inject.Inject
 
 class UserDetailInfoFragment : BaseFragment<User>() {
@@ -106,14 +108,21 @@ class UserDetailInfoFragment : BaseFragment<User>() {
                 containerActivity.navigate(FollowersFragment.create(userName))
             }
         } else {
-            binding.fragmentUserDetailFollowers.alpha = 0.5f
+            binding.fragmentUserDetailFollowers.setViewEnabled(false)
         }
         if (data.following > 0) {
             binding.fragmentUserDetailFollowing.setOnClickListener {
                 containerActivity.navigate(FollowingFragment.create(userName))
             }
         } else {
-            binding.fragmentUserDetailFollowing.alpha = 0.5f
+            binding.fragmentUserDetailFollowing.setViewEnabled(false)
+        }
+        if (data.publicRepos > 0) {
+            binding.fragmentUserDetailRepos.setOnClickListener {
+                containerActivity.navigate(RepoListFragment.create(userName))
+            }
+        } else {
+            binding.fragmentUserDetailRepos.setViewEnabled(false)
         }
     }
 

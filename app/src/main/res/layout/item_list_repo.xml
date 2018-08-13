@@ -10,8 +10,8 @@
         <import type="android.text.TextUtils" />
 
         <variable
-            name="starred"
-            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.User.Starred" />
+            name="repoInfo"
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.IShortRepoInfo" />
     </data>
 
     <android.support.v7.widget.CardView
@@ -35,7 +35,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    avatarUrl="@{starred.owner.avatarUrl}"
+                    app:avatarUrl="@{repoInfo.getRepoOwner().avatarUrl}"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     android:layout_gravity="center"
@@ -56,7 +56,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:padding="5dp"
-                            android:text="@{starred.name}"
+                            android:text="@{repoInfo.getRepoName()}"
                             android:textColor="@color/colorAccent"
                             android:textSize="14sp"
                             tools:text="name of repository" />
@@ -66,11 +66,11 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:padding="3dp"
-                            android:text="@{starred.language}"
+                            android:text="@{repoInfo.getRepoLanguage()}"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="14sp"
                             android:textStyle="bold"
-                            android:visibility="@{!TextUtils.isEmpty(starred.language) ? View.VISIBLE : View.GONE}"
+                            android:visibility="@{!TextUtils.isEmpty(repoInfo.getRepoLanguage()) ? View.VISIBLE : View.GONE}"
                             tools:text="Java" />
 
                     </LinearLayout>
@@ -81,7 +81,7 @@
                         android:ellipsize="end"
                         android:padding="5dp"
                         android:singleLine="true"
-                        android:text="@{starred.description}"
+                        android:text="@{repoInfo.getRepoDescription()}"
                         android:textColor="@android:color/black"
                         android:textSize="14sp"
                         tools:text="description" />
@@ -105,7 +105,7 @@
                     android:padding="5dp"
                     android:scaleX="0.7"
                     android:scaleY="0.7"
-                    android:text="@{String.valueOf(starred.stargazersCount)}"
+                    android:text="@{String.valueOf(repoInfo.getRepoStargazersCount())}"
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
                     tools:text="2" />
@@ -119,7 +119,7 @@
                     android:padding="5dp"
                     android:scaleX="0.7"
                     android:scaleY="0.7"
-                    android:text="@{String.valueOf(starred.forks)}"
+                    android:text="@{String.valueOf(repoInfo.getRepoForksCount())}"
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
                     tools:text="100" />
@@ -134,7 +134,7 @@
                     android:scaleX="0.7"
                     android:scaleY="0.7"
                     android:singleLine="true"
-                    android:text="@{starred.owner.login}"
+                    android:text="@{repoInfo.getRepoOwner().login}"
                     android:textColor="@android:color/black"
                     android:textSize="14sp"
                     tools:text="owner_name asdasd" />
