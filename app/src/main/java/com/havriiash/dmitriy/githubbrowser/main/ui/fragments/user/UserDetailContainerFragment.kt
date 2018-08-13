@@ -24,7 +24,7 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
         const val USER_PARAM = "UserDetailContainerFragment.Params.User"
 
-        fun newInstance(userName: String): UserDetailContainerFragment {
+        fun create(userName: String): UserDetailContainerFragment {
             val fragment = UserDetailContainerFragment()
             val args = Bundle()
             args.putString(USER_PARAM, userName)

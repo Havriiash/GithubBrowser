@@ -14,9 +14,9 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.databinding.FragmentUserDetailBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.OrganizationsAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
 import javax.inject.Inject
@@ -40,10 +40,6 @@ class UserDetailInfoFragment : BaseFragment<User>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this, factory).get(UserDetailViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_detail, container, false)
-
-        binding.fragmentUserDetailFollowers.setOnClickListener {
-            containerActivity.navigate(FollowersFragment.create(userName))
-        }
         return binding.root
     }
 
@@ -86,6 +82,7 @@ class UserDetailInfoFragment : BaseFragment<User>() {
         binding.fragmentUserDetailErrorView.visibility = View.GONE
         binding.user = data
         binding.fragmentUserDetailContent.visibility = View.VISIBLE
+        setListeners(data)
     }
 
     override fun setupToolbar() { /* container fragment takes this work */ }
@@ -101,6 +98,23 @@ class UserDetailInfoFragment : BaseFragment<User>() {
 
     private fun refreshInfo() {
         viewModel.getUserInfo()
+    }
+
+    private fun setListeners(data: User) {
+        if (data.followers > 0) {
+            binding.fragmentUserDetailFollowers.setOnClickListener {
+                containerActivity.navigate(FollowersFragment.create(userName))
+            }
+        } else {
+            binding.fragmentUserDetailFollowers.alpha = 0.5f
+        }
+        if (data.following > 0) {
+            binding.fragmentUserDetailFollowing.setOnClickListener {
+                containerActivity.navigate(FollowingFragment.create(userName))
+            }
+        } else {
+            binding.fragmentUserDetailFollowing.alpha = 0.5f
+        }
     }
 
     private val userObserver: Observer<RemoteResource<User>> = Observer {

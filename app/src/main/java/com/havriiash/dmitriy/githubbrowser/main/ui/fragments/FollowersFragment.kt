@@ -58,14 +58,14 @@ class FollowersFragment : BaseListFragment<Follower, FollowersModel>() {
         get() = 10
 
     override fun getAdapter(): PagedListAdapter<Follower, out RecyclerView.ViewHolder> = FollowersAdapter(DefaultItemClickListener {
-        containerActivity.navigate(UserDetailContainerFragment.newInstance(it.login))
+        containerActivity.navigate(UserDetailContainerFragment.create(it.login))
     })
 
     override fun getToolbarTitle(): CharSequence {
         return if (containerActivity.isMain()) {
-            "My followers"
+            getString(R.string.my_followers_title)
         } else {
-            "Followers / $userName"
+            getString(R.string.followers_placeholder, userName)
         }
     }
 }
