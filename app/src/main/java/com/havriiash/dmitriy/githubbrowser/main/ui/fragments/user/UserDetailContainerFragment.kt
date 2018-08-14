@@ -2,6 +2,7 @@ package com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
+import com.havriiash.dmitriy.githubbrowser.databinding.LayoutContainerUserBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseContainerFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
@@ -39,6 +41,8 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
     protected var currentPage: Int = 0
 
+    private lateinit var layoutContainerUserBinding: LayoutContainerUserBinding
+
 
     override val fragments: List<DaggerFragment>
         get() = arrayListOf(UserDetailInfoFragment(), UserDetailActivityFragment(), UserDetailStarredFragment())
@@ -66,11 +70,16 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
     protected lateinit var viewModel: UserDetailViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val rootView = super.onCreateView(inflater, container, savedInstanceState)
+
         viewModel = ViewModelProviders.of(this, factory).get(UserDetailViewModel::class.java)
         if (savedInstanceState != null) {
             currentPage = savedInstanceState.getInt(CURRENT_PAGE_PARAM, 0)
         }
-        return super.onCreateView(inflater, container, savedInstanceState)
+
+        layoutContainerUserBinding = DataBindingUtil.inflate(inflater, R.layout.layout_container_user, container, false)
+        containerBinding.fragmentContainerToolbarContainer.addView(layoutContainerUserBinding.root)
+        return rootView
     }
 
     override fun onResume() {
@@ -94,8 +103,9 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
     }
 
     override fun onDataLoaded(data: User) {
-        containerBinding.user = data
-        containerBinding.fragmentUserDetailProgressToolbar.visibility = View.GONE
+        containerBinding.backgroundImageUrl = data.avatarUrl
+        layoutContainerUserBinding.user = data
+        containerBinding.fragmentContainerToolbarProgress.visibility = View.GONE
     }
 
     override fun onError(msg: String) {
@@ -104,7 +114,7 @@ class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerLi
 
     override fun onProgress(progress: Boolean) {
         val visibility = if (progress) View.VISIBLE else View.GONE
-        containerBinding.fragmentUserDetailProgressToolbar.visibility = visibility
+        containerBinding.fragmentContainerToolbarProgress.visibility = visibility
     }
 
     private val userObserver: Observer<RemoteResource<User>> = Observer {
