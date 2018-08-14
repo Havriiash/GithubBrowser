@@ -21,6 +21,14 @@
     <string name="tab_starred_title">Starred</string>
     <string name="user_detail_organizations_text">Organizations</string>
 
+    <!-- repo detail -->
+    <string name="tab_repo_info_title">Info</string>
+    <string name="repo_detail_watchers_text">Watchers</string>
+    <string name="repo_detail_forks_text">Forks</string>
+    <string name="repo_detail_stargazers_text">Stargazers</string>
+    <string name="repo_detail_issues_text">Issues</string>
+    <string name="repo_detail_readme_text">Readme</string>
+
     <!--drawer menu-->
     <string name="drawer_news">News</string>
     <string name="drawer_repos">Repositories</string>
@@ -43,6 +51,11 @@
     <string name="followers_placeholder">Followers / %1$s</string>
     <string name="following_placeholder">Following / %1$s</string>
     <string name="repos_placeholder">Repos / %1$s</string>
+    <string name="size_placeholder">Size: %1$s</string>
+    <string name="language_placeholder">Language: %1$s</string>
+    <string name="created_at_placeholder">Created at %1$s</string>
+    <string name="latest_commit_placeholder">Latest commit %1$s</string>
+
     <string name="star_count_placeholder"> \u2605 %1$d</string>
     <string name="fork_count_placeholder"> \u2442 %1$d</string>
 

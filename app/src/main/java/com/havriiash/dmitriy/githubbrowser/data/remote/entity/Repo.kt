@@ -1,6 +1,7 @@
 package com.havriiash.dmitriy.githubbrowser.data.remote.entity
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class Repo(
         @SerializedName("id") val id: Long,
@@ -49,15 +50,15 @@ data class Repo(
         @SerializedName("labels_url") val labels_url: String,
         @SerializedName("releases_url") val releases_url: String,
         @SerializedName("deployments_url") val deployments_url: String,
-        @SerializedName("created_at") val created_at: String,
-        @SerializedName("updated_at") val updated_at: String,
-        @SerializedName("pushed_at") val pushed_at: String,
+        @SerializedName("created_at") val created_at: Date,
+        @SerializedName("updated_at") val updated_at: Date,
+        @SerializedName("pushed_at") val pushed_at: Date,
         @SerializedName("git_url") val git_url: String,
         @SerializedName("ssh_url") val ssh_url: String,
         @SerializedName("clone_url") val clone_url: String,
         @SerializedName("svn_url") val svn_url: String,
         @SerializedName("homepage") val homepage: String,
-        @SerializedName("size") val size: Int,
+        @SerializedName("size") val size: Long,
         @SerializedName("stargazers_count") val stargazers_count: Int,
         @SerializedName("watchers_count") val watchers_count: Int,
         @SerializedName("language") val language: String,

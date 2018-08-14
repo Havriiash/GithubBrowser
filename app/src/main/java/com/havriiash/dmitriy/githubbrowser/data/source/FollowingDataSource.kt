@@ -6,10 +6,10 @@ import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowingModel
 import javax.inject.Inject
 
 class FollowingDataSource
-    @Inject constructor(
-            model: FollowingModel,
-            private val userName: String
-    ): BaseListDataSource<Follower, FollowingModel>(model) {
+@Inject constructor(
+        model: FollowingModel,
+        private val userName: String
+) : BaseListDataSource<Follower, FollowingModel>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Follower>) {
         disposables.add(
@@ -24,7 +24,7 @@ class FollowingDataSource
                                         callback.onResult(following, params.requestedStartPosition)
                                     }
                                 },
-                                { throwable-> sourceObservable.value = RemoteResource.error(throwable) }
+                                { throwable -> sourceObservable.value = RemoteResource.error(throwable) }
                         )
         )
     }

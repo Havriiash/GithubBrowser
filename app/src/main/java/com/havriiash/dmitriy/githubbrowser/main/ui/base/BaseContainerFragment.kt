@@ -12,7 +12,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.PagerFragmentAdapter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-abstract class BaseContainerFragment: DaggerFragment() {
+abstract class BaseContainerFragment<D>: DaggerFragment(), FragmentContainerListener<D> {
 
     @Inject
     protected lateinit var containerActivity: ContainerActivity

@@ -7,13 +7,13 @@
 
         <import type="android.view.View" />
 
-        <import type="com.havriiash.dmitriy.githubbrowser.global.Constants" />
+        <import type="com.havriiash.dmitriy.githubbrowser.utils.ExtensionsKt" />
 
         <import type="android.text.TextUtils" />
 
         <variable
-            name="user"
-            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.User" />
+            name="repo"
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo" />
     </data>
 
     <android.support.v4.widget.NestedScrollView
@@ -28,7 +28,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/fragment_user_detail_progress"
+                android:id="@+id/fragment_repo_detail_progress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -42,7 +42,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fragment_user_detail_content"
+                android:id="@+id/fragment_repo_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -64,64 +64,20 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@{user.name}"
+                            android:text="@{repo.full_name}"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            tools:text="Name" />
+                            tools:text="Repository Name" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@{user.bio}"
-                            android:textSize="14sp"
-                            android:visibility="@{!TextUtils.isEmpty(user.bio) ? View.VISIBLE : View.GONE}"
-                            tools:text="bio" />
+                            android:text="@{String.format(@string/latest_commit_placeholder, (repo == null) ? ` ` : ExtensionsKt.relativeTimeStr(repo.pushed_at))}"
+                            android:textSize="12sp"
+                            tools:text="Latest commit" />
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="5dp"
-                            android:layout_margin="5dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:autoLink="all"
-                            android:drawablePadding="5dp"
-                            android:drawableStart="@drawable/ic_company"
-                            android:gravity="start|center"
-                            android:padding="3dp"
-                            android:text="@{user.company}"
-                            android:textColor="@android:color/black"
-                            android:textSize="14sp"
-                            android:visibility="@{!TextUtils.isEmpty(user.company) ? View.VISIBLE : View.GONE}"
-                            tools:text="Company name" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:autoLink="all"
-                            android:drawablePadding="5dp"
-                            android:drawableStart="@drawable/ic_email"
-                            android:gravity="start|center"
-                            android:padding="3dp"
-                            android:text="@{user.email}"
-                            android:textSize="14sp"
-                            android:visibility="@{!TextUtils.isEmpty(user.email) ? View.VISIBLE : View.GONE}"
-                            tools:text="user@email.com" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:autoLink="all"
-                            android:drawablePadding="5dp"
-                            android:drawableStart="@drawable/ic_link"
-                            android:gravity="start|center"
-                            android:padding="3dp"
-                            android:text="@{user.blog}"
-                            android:textSize="14sp"
-                            android:visibility="@{!TextUtils.isEmpty(user.blog) ? View.VISIBLE : View.GONE}"
-                            tools:text="http://www.google.com" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -131,7 +87,7 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
-                                android:id="@+id/fragment_user_detail_followers"
+                                android:id="@+id/fragment_repo_detail_issues"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -145,7 +101,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@{String.valueOf(user.followers)}"
+                                    android:text="@{String.valueOf(repo.open_issues)}"
                                     android:textColor="@android:color/black"
                                     android:textSize="16sp" />
 
@@ -153,14 +109,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@string/drawer_followers"
+                                    android:text="@string/repo_detail_issues_text"
                                     android:textColor="@android:color/black"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/fragment_user_detail_following"
+                                android:id="@+id/fragment_repo_detail_stargazers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -174,7 +130,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@{String.valueOf(user.following)}"
+                                    android:text="@{String.valueOf(repo.stargazers_count)}"
                                     android:textColor="@android:color/black"
                                     android:textSize="16sp" />
 
@@ -182,14 +138,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@string/drawer_following"
+                                    android:text="@string/repo_detail_stargazers_text"
                                     android:textColor="@android:color/black"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
 
                             <LinearLayout
-                                android:id="@+id/fragment_user_detail_repos"
+                                android:id="@+id/fragment_repo_detail_forks"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -203,7 +159,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@{String.valueOf(user.publicRepos)}"
+                                    android:text="@{String.valueOf(repo.forks)}"
                                     android:textColor="@android:color/black"
                                     android:textSize="16sp" />
 
@@ -211,13 +167,14 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@string/drawer_repos"
+                                    android:text="@string/repo_detail_forks_text"
                                     android:textColor="@android:color/black"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/fragment_repo_detail_watchers"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -231,7 +188,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@{String.valueOf(user.publicGists)}"
+                                    android:text="@{String.valueOf(repo.watchers_count)}"
                                     android:textColor="@android:color/black"
                                     android:textSize="16sp" />
 
@@ -239,7 +196,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="@string/drawer_gists"
+                                    android:text="@string/repo_detail_watchers_text"
                                     android:textColor="@android:color/black"
                                     android:textSize="14sp" />
 
@@ -252,7 +209,7 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/fragment_user_detail_content_organizations"
+                    android:id="@+id/fragment_repo_detail_readme"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
@@ -268,15 +225,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="5dp"
-                            android:text="@string/user_detail_organizations_text"
+                            android:text="@string/repo_detail_readme_text"
                             android:textColor="@color/colorPrimaryDark"
                             android:textSize="16sp" />
-
-                        <android.support.v7.widget.RecyclerView
-                            android:id="@+id/fragment_user_detail_content_organizations_rv"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
 
                     </LinearLayout>
 
@@ -285,7 +236,7 @@
             </LinearLayout>
 
             <com.havriiash.dmitriy.githubbrowser.main.ui.views.ErrorView
-                android:id="@+id/fragment_user_detail_errorView"
+                android:id="@+id/fragment_repo_detail_errorView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone"

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <import type="com.havriiash.dmitriy.githubbrowser.utils.ExtensionsKt" />
+
+        <import type="com.havriiash.dmitriy.githubbrowser.utils.StringUtils" />
+
+        <variable
+            name="repo"
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        tools:background="@color/colorPrimary"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="@{repo.name}"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Repo name" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_star"
+                android:tint="@android:color/white" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_fork"
+                android:tint="@android:color/white" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@{repo.description}"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="description for repository" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@{String.format(@string/language_placeholder, repo.language)}"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:visibility="@{!TextUtils.isEmpty(repo.language) ? View.VISIBLE : View.GONE}"
+            tools:text="Language: Kotlin" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@{String.format(@string/size_placeholder, StringUtils.fileSizeToString(repo.size))}"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            tools:text="Size: 115Kb" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            android:text="@{String.format(@string/created_at_placeholder, (repo == null) ? `?` : ExtensionsKt.yearMonthDayStr(repo.created_at))}"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            tools:text="Created at: yyyy-mm-dd" />
+
+    </LinearLayout>
+</layout>

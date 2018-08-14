@@ -13,13 +13,12 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutContainerUserBinding
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseContainerFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class UserDetailContainerFragment : BaseContainerFragment(), FragmentContainerListener<User> {
+class UserDetailContainerFragment : BaseContainerFragment<User>() {
 
     companion object {
         private const val CURRENT_PAGE_PARAM = "UserDetailContainerFragment.Params.CurrentPage"

@@ -2,6 +2,8 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailContainerFragmentModule
+import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoListFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.user.UserDetailContainerFragmentModule
 import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
@@ -10,6 +12,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailContainerFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoListFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.MainViewModel
@@ -59,4 +62,9 @@ interface MainActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RepoListFragmentModule::class])
     fun repoListFragment(): RepoListFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [RepoDetailContainerFragmentModule::class])
+    fun repoDetailContainerFragment(): RepoDetailContainerFragment
+
 }

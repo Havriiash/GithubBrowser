@@ -25,6 +25,7 @@ abstract class FollowersFragmentModule {
     @Module
     companion object {
 
+        @FragmentScope
         @JvmStatic
         @Provides
         fun provideUserName(followersFragment: FollowersFragment): String {
