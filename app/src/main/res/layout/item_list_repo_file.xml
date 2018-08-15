@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.view.Gravity" />
+
+        <import type="com.havriiash.dmitriy.githubbrowser.utils.StringUtils" />
+
+        <variable
+            name="file"
+            type="com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo.File" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?android:attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@{file.type.equals(`dir`) ? @drawable/ic_dir : @drawable/ic_file }"
+            tools:src="@drawable/ic_dir"
+            android:tint="@{file.type.equals(`dir`) ? @color/colorPrimary : @color/colorAccent}"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="@{file.type.equals(`dir`) ? Gravity.START : Gravity.CENTER }"
+            android:padding="5dp"
+            android:text="@{file.name}"
+            android:textSize="14sp"
+            tools:text="File or dir name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@{String.format(@string/size_placeholder, StringUtils.fileSizeToString(file.size))}"
+            android:textSize="12sp"
+            android:visibility="@{file.type.equals(`file`) ? View.VISIBLE : View.GONE }"
+            tools:text="1.00kb" />
+
+    </LinearLayout>
+
+</layout>

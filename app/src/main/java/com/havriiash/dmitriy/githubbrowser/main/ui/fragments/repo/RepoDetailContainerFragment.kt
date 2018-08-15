@@ -89,10 +89,10 @@ class RepoDetailContainerFragment: BaseContainerFragment<Repo>() {
 
 
     override val fragments: List<DaggerFragment>
-        get() = arrayListOf(RepoDetailInfoFragment())
+        get() = arrayListOf(RepoDetailInfoFragment(), RepoDetailFilesFragment.create(null))
 
     override val titles: List<String>
-        get() = arrayListOf("Info")
+        get() = arrayListOf("Info", "Files")
 
     override val pageChangeListener: ViewPager.OnPageChangeListener
         get() = object : ViewPager.OnPageChangeListener {

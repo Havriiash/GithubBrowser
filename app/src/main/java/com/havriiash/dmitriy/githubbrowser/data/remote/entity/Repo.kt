@@ -102,6 +102,27 @@ data class Repo(
 
     override fun getRepoLanguage(): String = language
 
+    data class File(
+            @SerializedName("name")
+            val name: String,
+            @SerializedName("path")
+            val path: String,
+            @SerializedName("sha")
+            val sha: String,
+            @SerializedName("size")
+            val size: Long,
+            @SerializedName("url")
+            val url: String,
+            @SerializedName("html_url")
+            val htmlUrl: String,
+            @SerializedName("git_url")
+            val gitUrl: String,
+            @SerializedName("download_url")
+            val downloadUrl: String,
+            @SerializedName("type")
+            val type: String
+    )
+
     data class License(
             @SerializedName("key") val key: String,
             @SerializedName("name") val name: String,

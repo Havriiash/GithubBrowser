@@ -7,6 +7,7 @@ import com.havriiash.dmitriy.githubbrowser.main.models.impl.RepoDetailModelImpl
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailContainerFragment
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailInfoFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.RepoDetailVMFactory
@@ -60,4 +61,9 @@ abstract class RepoDetailContainerFragmentModule {
     @ChildFragmentScope
     @ContributesAndroidInjector(modules = [RepoDetailInfoFragmentModule::class])
     abstract fun repoDetailInfoFragment(): RepoDetailInfoFragment
+
+    @ChildFragmentScope
+    @ContributesAndroidInjector(modules = [RepoDetailFilesFragmentModule::class])
+    abstract fun repoDetailFilesFragment(): RepoDetailFilesFragment
+
 }

@@ -51,6 +51,12 @@ interface GithubApi {
                     @Path("repo_name") repoName: String,
                     @Query("access_token") token: String): Single<Repo>
 
+    @GET("/repos/{username}/{repo_name}/contents/{deeper_path}")
+    fun getRepoContents(@Path("username") userName: String,
+                        @Path("repo_name") repoName: String,
+                        @Path("deeper_path") deeperPath: String?,
+                        @Query("access_token") token: String): Single<List<Repo.File>>
+
 //    =============================================================================================
 //    User queries
 
