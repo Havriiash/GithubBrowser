@@ -21,50 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        tools:background="@color/colorPrimary"
         android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="@{repo.name}"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="Repo name" />
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="5dp"
-                android:src="@drawable/ic_star"
-                android:tint="@android:color/white" />
-
-            <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="5dp"
-                android:src="@drawable/ic_fork"
-                android:tint="@android:color/white" />
-
-        </LinearLayout>
-
+        android:padding="16dp"
+        tools:background="@color/colorPrimary">
 
         <TextView
             android:layout_width="match_parent"
@@ -97,8 +56,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:text="@{String.format(@string/created_at_placeholder, (repo == null) ? `?` : ExtensionsKt.yearMonthDayStr(repo.created_at))}"
             android:textColor="@android:color/white"
             android:textSize="12sp"

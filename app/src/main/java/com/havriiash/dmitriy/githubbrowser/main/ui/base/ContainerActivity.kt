@@ -1,8 +1,8 @@
 package com.havriiash.dmitriy.githubbrowser.main.ui.base
 
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
-import android.support.v7.widget.Toolbar
 
 interface ContainerActivity {
 
@@ -13,4 +13,7 @@ interface ContainerActivity {
     fun isMain(): Boolean
 
     fun getContainerSupportActionBar(): ActionBar?
+
+    fun getContainerActivity(): Context
+
 }

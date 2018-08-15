@@ -1,5 +1,6 @@
 package com.havriiash.dmitriy.githubbrowser.main.ui.base
 
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.widget.Toast
@@ -22,6 +23,8 @@ abstract class BaseActivity : DaggerAppCompatActivity(), ContainerActivity {
     override fun isMain(): Boolean = supportFragmentManager.backStackEntryCount == 0
 
     override fun getContainerSupportActionBar(): ActionBar? = supportActionBar
+
+    override fun getContainerActivity(): Context = this
 
     protected fun navigate(fragment: Fragment, isAddToBackStack: Boolean = true, isClearBackStack: Boolean = false) {
         if (isClearBackStack) {

@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +11,11 @@ import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
-import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailContainerFragmentModule
+import com.havriiash.dmitriy.githubbrowser.di.modules.RepoDetailActivityModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailFilesFragmentModule
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.RepoFilesAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseFragment
-import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
+import com.havriiash.dmitriy.githubbrowser.main.ui.base.IActivityContainer
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailFilesViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.RepoDetailFilesVMFactory
 import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
@@ -44,12 +43,12 @@ class RepoDetailFilesFragment : BaseFragment<List<Repo.File>>() {
     protected lateinit var viewModel: RepoDetailFilesViewModel
 
     @Inject
-    protected lateinit var containerListener: FragmentContainerListener<Repo>
+    protected lateinit var containerListener: IActivityContainer<Repo>
 
     @Inject
     protected lateinit var userName: String
 
-    @field:[Inject Named(RepoDetailContainerFragmentModule.REPO_QUALIFIER_NAME)]
+    @field:[Inject Named(RepoDetailActivityModule.REPO_QUALIFIER_NAME)]
     protected lateinit var repoName: String
 
     @field:[Inject Named(RepoDetailFilesFragmentModule.PATH_QUALIFIER_NAME)]
@@ -89,7 +88,7 @@ class RepoDetailFilesFragment : BaseFragment<List<Repo.File>>() {
     override fun showError(msg: String) {
         binding.layoutRecyclerViewRv.visibility = View.GONE
         binding.layoutRecyclerViewErrorView.setErrorText(msg)
-
+        binding.layoutRecyclerViewErrorView.setOnRetryClickListener(View.OnClickListener { containerListener.refreshInfo() })
         binding.layoutRecyclerViewErrorView.visibility = View.VISIBLE
     }
 

@@ -13,6 +13,7 @@ import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.RepoDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoModel
+import com.havriiash.dmitriy.githubbrowser.main.ui.RepoDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.ReposAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
 import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
@@ -57,7 +58,8 @@ class RepoListFragment : BaseListFragment<IShortRepoInfo, RepoModel>() {
         get() = 10
 
     override fun getAdapter(): PagedListAdapter<IShortRepoInfo, out RecyclerView.ViewHolder> = ReposAdapter(DefaultItemClickListener {
-        containerActivity.navigate(RepoDetailContainerFragment.create(it.getRepoOwner().login, it.getRepoName()))
+//        containerActivity.navigate(RepoDetailContainerFragment.create(it.getRepoOwner().login, it.getRepoName()))
+        RepoDetailActivity.startRepoDetailActivity(containerActivity.getContainerActivity(), it.getRepoOwner().login, it.getRepoName())
     })
 
     override fun getToolbarTitle(): CharSequence {

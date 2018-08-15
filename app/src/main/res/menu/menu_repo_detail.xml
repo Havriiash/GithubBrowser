@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_repo_detail_star"
+        android:icon="@drawable/ic_menu_star"
+        android:title="@string/menu_star_title"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_repo_detail_branch"
+        android:icon="@drawable/ic_fork"
+        android:title="@string/menu_branches_title"
+        app:showAsAction="always" />
+
+</menu>

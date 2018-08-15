@@ -7,7 +7,7 @@ import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoDetailFile
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailFilesViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.RepoDetailFilesVMFactory
-import com.havriiash.dmitriy.spdilib.scopes.ChildFragmentScope
+import com.havriiash.dmitriy.spdilib.scopes.FragmentScope
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -16,15 +16,15 @@ import javax.inject.Named
 @Module
 abstract class RepoDetailFilesFragmentModule {
 
-    @ChildFragmentScope
+    @FragmentScope
     @Binds
     abstract fun bindRepoDetailFilesModel(repoDetailFilesModelImpl: RepoDetailFilesModelImpl): RepoDetailFilesModel
 
-    @ChildFragmentScope
+    @FragmentScope
     @Binds
     abstract fun bindRepoDetailFilesViewModel(repoDetailFilesViewModel: RepoDetailFilesViewModel): ViewModel
 
-    @ChildFragmentScope
+    @FragmentScope
     @Binds
     abstract fun bindRepoDetailFileVMFactory(repoDetailFileVMFactory: RepoDetailFilesVMFactory): ViewModelProvider.Factory
 
@@ -33,7 +33,7 @@ abstract class RepoDetailFilesFragmentModule {
         const val PATH_QUALIFIER_NAME = "repo_detail_file_path"
 
         @JvmStatic
-        @ChildFragmentScope
+        @FragmentScope
         @Provides
         @Named(PATH_QUALIFIER_NAME)
         fun providePath(repoDetailFilesFragment: RepoDetailFilesFragment): String {

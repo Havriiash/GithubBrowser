@@ -4,6 +4,13 @@
     <!-- common -->
     <string name="divider_dot"> \u2022 </string>
     <string name="symbol_star"> \u2605 </string>
+    <string name="toolbar_background_image_description">ToolbarBackgroundImageDescription</string>
+
+    <!--menu-->
+    <string name="menu_star_title">Star</string>
+    <string name="menu_branches_title">Branches</string>
+
+    <string name="title_activity_repo_detail">Repo detail activity</string>
 
     <string name="sign_in">Sign in</string>
     <string name="title_activity_main">MainActivity</string>
