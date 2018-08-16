@@ -40,6 +40,8 @@
 
         <activity android:name=".main.ui.RepoDetailActivity" />
 
+        <activity android:name=".main.ui.WebBrowserActivity" />
+
     </application>
 
 </manifest>

@@ -2,9 +2,7 @@ package com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -17,6 +15,7 @@ import com.havriiash.dmitriy.githubbrowser.databinding.FragmentRepoDetailFilesBi
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.di.modules.RepoDetailActivityModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailFilesFragmentModule
+import com.havriiash.dmitriy.githubbrowser.main.ui.WebBrowserActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.FilesExplorerAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.RepoFilesAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseFragment
@@ -53,8 +52,10 @@ class RepoDetailFilesFragment : BaseFragment<List<Repo.File>>() {
     protected lateinit var repoName: String
 
     @field:[Inject Named(RepoDetailFilesFragmentModule.PATH_QUALIFIER_NAME)]
-    protected lateinit var currentPath: String
+    protected lateinit var rootPath: String
 
+
+    private var currentPath = ""
 
     private lateinit var pagerBinding: FragmentRepoDetailFilesBinding
 
@@ -69,10 +70,13 @@ class RepoDetailFilesFragment : BaseFragment<List<Repo.File>>() {
         binding = pagerBinding.fragmentRepoDetailFilesContent!!
 
         filesExplorerAdapter = FilesExplorerAdapter(DefaultItemClickListener {
+            currentPath = it
             filesExplorerAdapter.removeItemsToPath(it)
             pagerBinding.fragmentRepoDetailFilesExplorer.smoothScrollToPosition(filesExplorerAdapter.itemCount)
             viewModel.getRepoFile(it)
         })
+        binding.layoutRecyclerViewSwipeRefresh.setColorSchemeResources(R.color.colorPrimary)
+        binding.layoutRecyclerViewSwipeRefresh.setOnRefreshListener { viewModel.getRepoFile(currentPath) }
         pagerBinding.fragmentRepoDetailFilesExplorer.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         pagerBinding.fragmentRepoDetailFilesExplorer.adapter = filesExplorerAdapter
         return pagerBinding.root
@@ -115,16 +119,16 @@ class RepoDetailFilesFragment : BaseFragment<List<Repo.File>>() {
                 filesExplorerAdapter.addPath(it.path)
                 pagerBinding.fragmentRepoDetailFilesExplorer.smoothScrollToPosition(filesExplorerAdapter.itemCount)
                 viewModel.getRepoFile(it.path)
+                currentPath = it.path
             } else {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(it.links.html))
-                startActivity(browserIntent)
+                WebBrowserActivity.go(activity!!, it.links.html)
             }
         })
         binding.layoutRecyclerViewRv.visibility = View.VISIBLE
     }
 
     private fun refreshInfo() {
-        viewModel.getRepoFile(currentPath)
+        viewModel.getRepoFile(rootPath)
     }
 
     private val repoFilesObserver: Observer<RemoteResource<List<Repo.File>>> = Observer {
