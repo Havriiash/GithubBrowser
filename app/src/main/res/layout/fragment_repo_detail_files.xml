@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_repo_detail_files_explorer"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/listPreferredItemHeightSmall"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="5dp"/>
+
+        <include
+            android:id="@+id/fragment_repo_detail_files_content"
+            layout="@layout/layout_recycler_view" />
+
+    </LinearLayout>
+
+</layout>

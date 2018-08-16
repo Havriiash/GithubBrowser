@@ -120,8 +120,19 @@ data class Repo(
             @SerializedName("download_url")
             val downloadUrl: String,
             @SerializedName("type")
-            val type: String
-    )
+            val type: String,
+            @SerializedName("_links")
+            val links: Links
+    ) {
+        data class Links(
+                @SerializedName("self")
+                val self: String,
+                @SerializedName("git")
+                val git: String,
+                @SerializedName("html")
+                val html: String
+        )
+    }
 
     data class License(
             @SerializedName("key") val key: String,
