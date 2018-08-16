@@ -57,6 +57,19 @@ interface GithubApi {
                         @Path("deeper_path") deeperPath: String?,
                         @Query("access_token") token: String): Single<List<Repo.File>>
 
+    @GET("/repos/{username}/{repo_name}/commits")
+    fun getRepoCommits(@Path("username") userName: String,
+                       @Path("repo_name") repoName: String,
+                       @Query("page") page: Int,
+                       @Query("per_page") count: Int,
+                       @Query("access_token") token: String): Single<List<Commit>>
+
+    @GET("/repos/{username}/{repo_name}/commits/{sha}")
+    fun getRepoCommit(@Path("username") userName: String,
+                      @Path("repo_name") repoName: String,
+                      @Path("sha") sha: String,
+                      @Query("access_token") token: String): Single<Commit>
+
 //    =============================================================================================
 //    User queries
 

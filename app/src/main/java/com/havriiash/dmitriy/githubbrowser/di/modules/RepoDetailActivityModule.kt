@@ -3,6 +3,7 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
+import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailCommitsFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailFilesFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailInfoFragmentModule
 import com.havriiash.dmitriy.githubbrowser.main.models.impl.RepoDetailModelImpl
@@ -10,6 +11,7 @@ import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoDetailMode
 import com.havriiash.dmitriy.githubbrowser.main.ui.RepoDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.IActivityContainer
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailCommitsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailInfoFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailViewModel
@@ -44,14 +46,14 @@ abstract class RepoDetailActivityModule {
         @JvmStatic
         @Provides
         fun provideUserName(repoDetailActivity: RepoDetailActivity): String =
-            repoDetailActivity.intent.getStringExtra(RepoDetailActivity.USER_PARAM)
+                repoDetailActivity.intent.getStringExtra(RepoDetailActivity.USER_PARAM)
 
         @ActivityScope
         @JvmStatic
         @Provides
         @Named(REPO_QUALIFIER_NAME)
         fun provideRepoName(repoDetailActivity: RepoDetailActivity): String =
-            repoDetailActivity.intent.getStringExtra(RepoDetailActivity.REPO_PARAM)
+                repoDetailActivity.intent.getStringExtra(RepoDetailActivity.REPO_PARAM)
 
     }
 
@@ -71,5 +73,9 @@ abstract class RepoDetailActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RepoDetailFilesFragmentModule::class])
     abstract fun repoDetailFilesFragment(): RepoDetailFilesFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [RepoDetailCommitsFragmentModule::class])
+    abstract fun repoDetailCommitsFragment(): RepoDetailCommitsFragment
 
 }

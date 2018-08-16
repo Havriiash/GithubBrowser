@@ -16,6 +16,7 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutContainerRepoBinding
 import com.havriiash.dmitriy.githubbrowser.di.modules.RepoDetailActivityModule
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseContainerActivity
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailCommitsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailInfoFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailViewModel
@@ -58,10 +59,10 @@ class RepoDetailActivity: BaseContainerActivity<Repo>() {
 
 
     override val fragments: List<DaggerFragment>
-        get() = arrayListOf(RepoDetailInfoFragment(), RepoDetailFilesFragment.create(null))
+        get() = arrayListOf(RepoDetailInfoFragment(), RepoDetailFilesFragment.create(null), RepoDetailCommitsFragment())
 
     override val titles: List<String>
-        get() = arrayListOf("Info", "Files")
+        get() = arrayListOf("Info", "Files", "Commits")
 
     override val pageChangeListener: ViewPager.OnPageChangeListener
         get() = object : ViewPager.OnPageChangeListener {

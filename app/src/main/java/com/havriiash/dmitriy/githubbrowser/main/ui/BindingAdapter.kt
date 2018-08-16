@@ -1,6 +1,7 @@
 package com.havriiash.dmitriy.githubbrowser.main.ui
 
 import android.databinding.BindingAdapter
+import android.text.TextUtils
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -18,7 +19,7 @@ fun ImageView.setImageSrc(url: String?) {
 }
 
 private fun setImageFromUrl(url: String?, imageView: ImageView, isCircled: Boolean) {
-    if (url != null) {
+    if (!TextUtils.isEmpty(url)) {
         if (isCircled) {
             Glide.with(imageView)
                     .load(url)

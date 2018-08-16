@@ -4,7 +4,11 @@
     <!-- common -->
     <string name="divider_dot"> \u2022 </string>
     <string name="symbol_star"> \u2605 </string>
+
+    <!--content descriptions-->
     <string name="toolbar_background_image_description">ToolbarBackgroundImageDescription</string>
+    <string name="avatar_content_description">avatar image</string>
+    <string name="comments_content_description">comments icon</string>
 
     <!--menu-->
     <string name="menu_star_title">Star</string>
