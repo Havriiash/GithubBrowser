@@ -9,6 +9,7 @@
     <string name="toolbar_background_image_description">ToolbarBackgroundImageDescription</string>
     <string name="avatar_content_description">avatar image</string>
     <string name="comments_content_description">comments icon</string>
+    <string name="icon_content_description">icon</string>
 
     <!--menu-->
     <string name="menu_star_title">Star</string>
@@ -66,6 +67,9 @@
     <string name="language_placeholder">Language: %1$s</string>
     <string name="created_at_placeholder">Created at %1$s</string>
     <string name="latest_commit_placeholder">Latest commit %1$s</string>
+    <string name="additions_commit_placeholder">[+%1$d]</string>
+    <string name="deletions_commit_placeholder">[-%1$d]</string>
+    <string name="committed_at_placeholder">Committed at %1$s</string>
 
     <string name="star_count_placeholder"> \u2605 %1$d</string>
     <string name="fork_count_placeholder"> \u2442 %1$d</string>

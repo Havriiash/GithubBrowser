@@ -3,6 +3,7 @@ package com.havriiash.dmitriy.githubbrowser.main.ui
 import android.databinding.BindingAdapter
 import android.text.TextUtils
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.havriiash.dmitriy.githubbrowser.R
@@ -16,6 +17,16 @@ fun ImageView.setAvatarUrl(url: String?) {
 @BindingAdapter("imageSrc")
 fun ImageView.setImageSrc(url: String?) {
     setImageFromUrl(url, this, false)
+}
+
+@BindingAdapter("commitFileName")
+fun TextView.setCommitFileName(fileName: String) {
+    val slashIndex = fileName.lastIndexOf("/")
+    if (slashIndex != -1) {
+        this.text = fileName.substring(slashIndex + 1)
+    } else {
+        this.text = fileName
+    }
 }
 
 private fun setImageFromUrl(url: String?, imageView: ImageView, isCircled: Boolean) {
