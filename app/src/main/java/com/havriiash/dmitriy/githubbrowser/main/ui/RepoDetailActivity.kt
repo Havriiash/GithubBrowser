@@ -62,7 +62,7 @@ class RepoDetailActivity: BaseContainerActivity<Repo>() {
         get() = arrayListOf(RepoDetailInfoFragment(), RepoDetailFilesFragment.create(null), RepoDetailCommitsFragment())
 
     override val titles: List<String>
-        get() = arrayListOf("Info", "Files", "Commits")
+        get() = arrayListOf(getString(R.string.tab_repo_info_title), getString(R.string.tab_repo_files_title), getString(R.string.tab_repo_commits_title))
 
     override val pageChangeListener: ViewPager.OnPageChangeListener
         get() = object : ViewPager.OnPageChangeListener {
@@ -113,8 +113,8 @@ class RepoDetailActivity: BaseContainerActivity<Repo>() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.itemId) {
-            R.id.menu_repo_detail_star -> { showError("menu_repo_detail_star") }
-            R.id.menu_repo_detail_branch -> { showError("menu_repo_detail_branch") }
+            R.id.menu_repo_detail_star -> { showError(getString(R.string.developing_progress)) }
+            R.id.menu_repo_detail_branch -> { showError(getString(R.string.developing_progress)) }
         }
         return super.onOptionsItemSelected(item)
     }

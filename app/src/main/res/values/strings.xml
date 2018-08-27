@@ -4,6 +4,7 @@
     <!-- common -->
     <string name="divider_dot"> \u2022 </string>
     <string name="symbol_star"> \u2605 </string>
+    <string name="developing_progress">Developing..</string>
 
     <!--content descriptions-->
     <string name="toolbar_background_image_description">ToolbarBackgroundImageDescription</string>
@@ -35,6 +36,8 @@
 
     <!-- repo detail -->
     <string name="tab_repo_info_title">Info</string>
+    <string name="tab_repo_files_title">Files</string>
+    <string name="tab_repo_commits_title">Commits</string>
     <string name="repo_detail_watchers_text">Watchers</string>
     <string name="repo_detail_forks_text">Forks</string>
     <string name="repo_detail_stargazers_text">Stargazers</string>
@@ -70,6 +73,7 @@
     <string name="additions_commit_placeholder">[+%1$d]</string>
     <string name="deletions_commit_placeholder">[-%1$d]</string>
     <string name="committed_at_placeholder">Committed at %1$s</string>
+    <string name="commit_placeholder">Commit %1$s</string>
 
     <string name="star_count_placeholder"> \u2605 %1$d</string>
     <string name="fork_count_placeholder"> \u2442 %1$d</string>

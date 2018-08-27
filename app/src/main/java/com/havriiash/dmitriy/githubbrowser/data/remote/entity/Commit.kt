@@ -107,6 +107,6 @@ data class Commit(
             @SerializedName("contents_url")
             val contentsUrl: String,
             @SerializedName("patch")
-            val patch: String
+            val patch: String?
     )
 }

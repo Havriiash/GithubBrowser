@@ -79,9 +79,13 @@ class CommitDetailActivity: BaseActivity() {
     private fun showData(commit: Commit) {
         showProgress(false)
         binding.commitEntity = commit
-        supportActionBar?.title = "Commit ${commit.sha.substring(0, 7)}"
+        supportActionBar?.title = getString(R.string.commit_placeholder, commit.sha.substring(0, 7))
         binding.activityCommitDetailRecyclerView?.layoutRecyclerViewRv?.adapter = CommitFilesAdapter(commit.files, DefaultItemClickListener {
-            CommitPatchActivity.showCommitPatch(this, it.patch, it.fileName)
+            if (it.patch != null) {
+                CommitPatchActivity.showCommitPatch(this, it.patch, it.fileName)
+            } else {
+                WebBrowserActivity.go(this, it.blobUrl)
+            }
         })
     }
 
