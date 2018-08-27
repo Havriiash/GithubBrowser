@@ -16,6 +16,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.CommitFilesAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseActivity
 import com.havriiash.dmitriy.githubbrowser.main.vm.CommitDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.CommitDetailVMFactory
+import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
 
 class CommitDetailActivity: BaseActivity() {
@@ -79,7 +80,9 @@ class CommitDetailActivity: BaseActivity() {
         showProgress(false)
         binding.commitEntity = commit
         supportActionBar?.title = "Commit ${commit.sha.substring(0, 7)}"
-        binding.activityCommitDetailRecyclerView?.layoutRecyclerViewRv?.adapter = CommitFilesAdapter(commit.files, null)
+        binding.activityCommitDetailRecyclerView?.layoutRecyclerViewRv?.adapter = CommitFilesAdapter(commit.files, DefaultItemClickListener {
+            CommitPatchActivity.showCommitPatch(this, it.patch, it.fileName)
+        })
     }
 
     private fun setupUI() {

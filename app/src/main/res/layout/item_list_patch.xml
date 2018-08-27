@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="patchItem"
+            type="String" />
+    </data>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_list_patch_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:text="@{patchItem}"
+            android:textColor="@android:color/black"
+            android:textIsSelectable="true"
+            tools:background="@color/patch_plus"
+            tools:text="return followingFragment.arguments?.getString(FollowingFragment.USER_PARAM, \'\')!!" />
+
+    </HorizontalScrollView>
+
+</layout>

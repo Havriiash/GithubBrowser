@@ -15,7 +15,7 @@ class RepoRepositoryImpl
 @Inject constructor(
         private val githubApi: GithubApi,
         preferences: GithubBrowserPreferences
-): Repository(preferences), RepoRepository {
+) : Repository(preferences), RepoRepository {
 
     override fun getUserRepos(userName: String, page: Int, count: Int): Single<List<Repo>> {
         return githubApi.getUserRepos(userName, page, count, checkToken())

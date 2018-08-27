@@ -25,6 +25,10 @@ interface ActivityBuildingModule {
     @ContributesAndroidInjector(modules = [CommitDetailActivityModule::class])
     fun commitDetailActivity(): CommitDetailActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [CommitPatchActivityModule::class])
+    fun commitPatchActivity(): CommitPatchActivity
+
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [WebBrowserActivityModule::class])

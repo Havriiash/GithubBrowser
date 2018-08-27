@@ -44,6 +44,8 @@
 
         <activity android:name=".main.ui.CommitDetailActivity" />
 
+        <activity android:name=".main.ui.CommitPatchActivity" />
+
     </application>
 
 </manifest>
