@@ -2,14 +2,14 @@ package com.havriiash.dmitriy.githubbrowser.data.source
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowersModel
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.UserRepository
 import javax.inject.Inject
 
 class FollowersDataSource
 @Inject constructor(
-        model: FollowersModel,
+        model: UserRepository,
         private val userName: String
-) : BaseListDataSource<Follower, FollowersModel>(model) {
+) : BaseListDataSource<Follower, UserRepository>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<Follower>) {
         currentPage = 1

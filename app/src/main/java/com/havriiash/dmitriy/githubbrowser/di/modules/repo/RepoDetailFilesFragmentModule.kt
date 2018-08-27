@@ -2,8 +2,6 @@ package com.havriiash.dmitriy.githubbrowser.di.modules.repo
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.havriiash.dmitriy.githubbrowser.main.models.impl.RepoDetailFilesModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoDetailFilesModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.vm.RepoDetailFilesViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.RepoDetailFilesVMFactory
@@ -15,10 +13,6 @@ import javax.inject.Named
 
 @Module
 abstract class RepoDetailFilesFragmentModule {
-
-    @FragmentScope
-    @Binds
-    abstract fun bindRepoDetailFilesModel(repoDetailFilesModelImpl: RepoDetailFilesModelImpl): RepoDetailFilesModel
 
     @FragmentScope
     @Binds

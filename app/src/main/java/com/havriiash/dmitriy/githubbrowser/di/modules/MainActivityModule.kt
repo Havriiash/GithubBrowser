@@ -2,14 +2,10 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoListFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.user.UserDetailContainerFragmentModule
-import com.havriiash.dmitriy.githubbrowser.main.models.impl.MainModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.MainModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.MainActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
-import com.havriiash.dmitriy.githubbrowser.main.ui.base.IActivityContainer
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowersFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.FollowingFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.NewsFragment
@@ -25,10 +21,6 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 interface MainActivityModule {
-
-    @ActivityScope
-    @Binds
-    fun bindMainModel(mainModelImpl: MainModelImpl): MainModel
 
     @ActivityScope
     @Binds

@@ -2,14 +2,14 @@ package com.havriiash.dmitriy.githubbrowser.data.source
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailActivityModel
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.UserRepository
 import javax.inject.Inject
 
 class UserActivityDataSource
-    @Inject constructor(
-            model: UserDetailActivityModel,
-            private val userName: String
-    ): BaseListDataSource<User.UserActivity, UserDetailActivityModel>(model) {
+@Inject constructor(
+        model: UserRepository,
+        private val userName: String
+) : BaseListDataSource<User.UserActivity, UserRepository>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<User.UserActivity>) {
         currentPage = 1

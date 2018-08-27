@@ -2,15 +2,15 @@ package com.havriiash.dmitriy.githubbrowser.main.vm.factory
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.RepoRepository
 import com.havriiash.dmitriy.githubbrowser.di.modules.CommitDetailActivityModule
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.CommitDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.CommitDetailViewModel
 import javax.inject.Inject
 import javax.inject.Named
 
 class CommitDetailVMFactory
 @Inject constructor(
-        private val model: CommitDetailModel,
+        private val model: RepoRepository,
 
         @Named(CommitDetailActivityModule.USER_NAME_QUALIFIER)
         private val userName: String,

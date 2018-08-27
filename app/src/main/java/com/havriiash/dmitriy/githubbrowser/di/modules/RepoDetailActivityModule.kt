@@ -6,8 +6,6 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailCommitsFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailFilesFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailInfoFragmentModule
-import com.havriiash.dmitriy.githubbrowser.main.models.impl.RepoDetailModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.RepoDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.IActivityContainer
@@ -26,10 +24,6 @@ import javax.inject.Named
 
 @Module
 abstract class RepoDetailActivityModule {
-
-    @ActivityScope
-    @Binds
-    abstract fun bindRepoDetailModel(repoDetailModelImpl: RepoDetailModelImpl): RepoDetailModel
 
     @ActivityScope
     @Binds

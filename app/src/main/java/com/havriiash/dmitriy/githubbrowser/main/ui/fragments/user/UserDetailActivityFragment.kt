@@ -9,15 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.UserRepository
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.UserActivityDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailActivityModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.UserActivityAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
 import javax.inject.Inject
 
-class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetailActivityModel>() {
+class UserDetailActivityFragment : BaseListFragment<User.UserActivity, UserRepository>() {
 
     @Inject
     protected lateinit var userActivityDataSource: UserActivityDataSource
@@ -26,7 +26,7 @@ class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetail
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding =  DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
 
         setupListView()
         return binding.root
@@ -36,7 +36,7 @@ class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetail
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
-    override val dataSource: BaseListDataSource<User.UserActivity, UserDetailActivityModel>
+    override val dataSource: BaseListDataSource<User.UserActivity, UserRepository>
         get() = userActivityDataSource
 
     override val pageSize: Int
@@ -44,6 +44,7 @@ class UserDetailActivityFragment: BaseListFragment<User.UserActivity, UserDetail
 
     override fun getAdapter(): PagedListAdapter<User.UserActivity, out RecyclerView.ViewHolder> = UserActivityAdapter(null)
 
-    override fun setupToolbar() { /* container fragment takes this work */ }
+    override fun setupToolbar() { /* container fragment takes this work */
+    }
 
 }

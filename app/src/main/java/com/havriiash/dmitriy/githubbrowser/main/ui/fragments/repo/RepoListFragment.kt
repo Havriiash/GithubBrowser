@@ -9,17 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.IShortRepoInfo
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.RepoRepository
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.RepoDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.RepoDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.ReposAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
 import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
 
-class RepoListFragment : BaseListFragment<IShortRepoInfo, RepoModel>() {
+class RepoListFragment : BaseListFragment<IShortRepoInfo, RepoRepository>() {
 
     companion object {
         const val USER_PARAM = "RepoListFragment.Params.User"
@@ -51,7 +51,7 @@ class RepoListFragment : BaseListFragment<IShortRepoInfo, RepoModel>() {
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
-    override val dataSource: BaseListDataSource<IShortRepoInfo, RepoModel>
+    override val dataSource: BaseListDataSource<IShortRepoInfo, RepoRepository>
         get() = repoSource
 
     override val pageSize: Int

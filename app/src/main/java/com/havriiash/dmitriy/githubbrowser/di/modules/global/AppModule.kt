@@ -7,9 +7,10 @@ import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class AppModule {
+interface AppModule {
 
     @AppScope
     @Binds
-    abstract fun bindContext(app: GithubBrowserApp): Context
+    fun bindContext(app: GithubBrowserApp): Context
+
 }

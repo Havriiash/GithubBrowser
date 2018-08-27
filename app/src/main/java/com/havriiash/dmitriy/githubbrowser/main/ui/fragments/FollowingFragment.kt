@@ -9,17 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Follower
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.UserRepository
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.FollowingDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.FollowingModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.FollowersAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
 import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
 
-class FollowingFragment: BaseListFragment<Follower, FollowingModel>() {
+class FollowingFragment : BaseListFragment<Follower, UserRepository>() {
 
     companion object {
         const val USER_PARAM = "FollowingFragment.Params.User"
@@ -51,7 +51,7 @@ class FollowingFragment: BaseListFragment<Follower, FollowingModel>() {
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
-    override val dataSource: BaseListDataSource<Follower, FollowingModel>
+    override val dataSource: BaseListDataSource<Follower, UserRepository>
         get() = followingSource
 
     override val pageSize: Int

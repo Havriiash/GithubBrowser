@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Commit
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.RepoRepository
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.data.source.CommitsDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.di.modules.RepoDetailActivityModule
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.CommitsModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.CommitDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.adapters.CommitsAdapter
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseListFragment
@@ -21,7 +21,7 @@ import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickList
 import javax.inject.Inject
 import javax.inject.Named
 
-class RepoDetailCommitsFragment: BaseListFragment<Commit, CommitsModel>() {
+class RepoDetailCommitsFragment : BaseListFragment<Commit, RepoRepository>() {
 
     @Inject
     protected lateinit var commitsDataSource: CommitsDataSource
@@ -36,7 +36,7 @@ class RepoDetailCommitsFragment: BaseListFragment<Commit, CommitsModel>() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding =  DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.layout_recycler_view, container, false)
 
         setupListView()
         return binding.root
@@ -46,7 +46,7 @@ class RepoDetailCommitsFragment: BaseListFragment<Commit, CommitsModel>() {
     override val layoutListViewBinding: LayoutRecyclerViewBinding
         get() = binding
 
-    override val dataSource: BaseListDataSource<Commit, CommitsModel>
+    override val dataSource: BaseListDataSource<Commit, RepoRepository>
         get() = commitsDataSource
 
     override val pageSize: Int
@@ -56,6 +56,7 @@ class RepoDetailCommitsFragment: BaseListFragment<Commit, CommitsModel>() {
         CommitDetailActivity.showCommitDetail(activity!!, userName, repoName, it.sha)
     })
 
-    override fun setupToolbar() { /* container fragment takes this work */ }
+    override fun setupToolbar() { /* container fragment takes this work */
+    }
 
 }

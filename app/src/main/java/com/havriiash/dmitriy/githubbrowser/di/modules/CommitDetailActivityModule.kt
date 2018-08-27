@@ -2,8 +2,6 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.havriiash.dmitriy.githubbrowser.main.models.impl.CommitDetailModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.CommitDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.CommitDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.vm.CommitDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.CommitDetailVMFactory
@@ -15,10 +13,6 @@ import javax.inject.Named
 
 @Module
 abstract class CommitDetailActivityModule {
-
-    @ActivityScope
-    @Binds
-    abstract fun bindCommitDetailModel(commitDetailModelImpl: CommitDetailModelImpl): CommitDetailModel
 
     @ActivityScope
     @Binds

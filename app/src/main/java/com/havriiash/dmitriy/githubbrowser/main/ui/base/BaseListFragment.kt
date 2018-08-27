@@ -7,12 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
+import com.havriiash.dmitriy.githubbrowser.data.repositories.IRepository
 import com.havriiash.dmitriy.githubbrowser.data.source.BaseListDataSource
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutRecyclerViewBinding
 import com.havriiash.dmitriy.githubbrowser.global.Constants
-import com.havriiash.dmitriy.githubbrowser.main.models.ModelLayer
 
-abstract class BaseListFragment<D, M : ModelLayer> : BaseFragment<D>() {
+abstract class BaseListFragment<D, M : IRepository> : BaseFragment<D>() {
 
     protected abstract val layoutListViewBinding: LayoutRecyclerViewBinding
 
@@ -84,5 +84,5 @@ abstract class BaseListFragment<D, M : ModelLayer> : BaseFragment<D>() {
         layoutListViewBinding.layoutRecyclerViewSwipeRefresh.isRefreshing = progress
     }
 
-    override fun showContent(data: D) { }
+    override fun showContent(data: D) {}
 }

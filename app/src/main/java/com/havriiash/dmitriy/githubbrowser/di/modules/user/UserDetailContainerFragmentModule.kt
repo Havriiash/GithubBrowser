@@ -3,8 +3,6 @@ package com.havriiash.dmitriy.githubbrowser.di.modules.user
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
-import com.havriiash.dmitriy.githubbrowser.main.models.impl.UserDetailModelImpl
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.UserDetailModel
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.FragmentContainerListener
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailActivityFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.user.UserDetailContainerFragment
@@ -21,10 +19,6 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class UserDetailContainerFragmentModule {
-
-    @FragmentScope
-    @Binds
-    abstract fun bindUserDetailModel(userDetailModelImpl: UserDetailModelImpl): UserDetailModel
 
     @FragmentScope
     @Binds

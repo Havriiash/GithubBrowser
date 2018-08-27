@@ -2,14 +2,14 @@ package com.havriiash.dmitriy.githubbrowser.data.source
 
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.IShortRepoInfo
-import com.havriiash.dmitriy.githubbrowser.main.models.interfaces.RepoModel
+import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.RepoRepository
 import javax.inject.Inject
 
 class RepoDataSource
 @Inject constructor(
-        model: RepoModel,
+        model: RepoRepository,
         private val userName: String
-) : BaseListDataSource<IShortRepoInfo, RepoModel>(model) {
+) : BaseListDataSource<IShortRepoInfo, RepoRepository>(model) {
 
     override fun loadInitial(params: LoadInitialParams, callback: LoadInitialCallback<IShortRepoInfo>) {
         currentPage = 1
