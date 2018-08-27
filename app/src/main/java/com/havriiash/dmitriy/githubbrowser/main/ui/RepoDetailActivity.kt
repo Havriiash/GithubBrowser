@@ -16,6 +16,7 @@ import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
 import com.havriiash.dmitriy.githubbrowser.databinding.LayoutContainerRepoBinding
 import com.havriiash.dmitriy.githubbrowser.di.modules.RepoDetailActivityModule
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.BaseContainerActivity
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailActivityFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailCommitsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailInfoFragment
@@ -25,7 +26,7 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import javax.inject.Named
 
-class RepoDetailActivity: BaseContainerActivity<Repo>() {
+class RepoDetailActivity : BaseContainerActivity<Repo>() {
 
     companion object {
         private const val CURRENT_PAGE_PARAM = "RepoDetailActivity.Params.CurrentPage"
@@ -59,16 +60,26 @@ class RepoDetailActivity: BaseContainerActivity<Repo>() {
 
 
     override val fragments: List<DaggerFragment>
-        get() = arrayListOf(RepoDetailInfoFragment(), RepoDetailFilesFragment.create(null), RepoDetailCommitsFragment())
+        get() = arrayListOf(
+                RepoDetailInfoFragment(),
+                RepoDetailFilesFragment.create(null),
+                RepoDetailCommitsFragment(),
+                RepoDetailActivityFragment()
+        )
 
     override val titles: List<String>
-        get() = arrayListOf(getString(R.string.tab_repo_info_title), getString(R.string.tab_repo_files_title), getString(R.string.tab_repo_commits_title))
+        get() = arrayListOf(
+                getString(R.string.tab_repo_info_title),
+                getString(R.string.tab_repo_files_title),
+                getString(R.string.tab_repo_commits_title),
+                getString(R.string.tab_repo_activity_title)
+        )
 
     override val pageChangeListener: ViewPager.OnPageChangeListener
         get() = object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) { }
+            override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) { }
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
                 currentPage = position
@@ -112,23 +123,31 @@ class RepoDetailActivity: BaseContainerActivity<Repo>() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
-            R.id.menu_repo_detail_star -> { showError(getString(R.string.developing_progress)) }
-            R.id.menu_repo_detail_branch -> { showError(getString(R.string.developing_progress)) }
+        when (item?.itemId) {
+            R.id.menu_repo_detail_star -> {
+                showError(getString(R.string.developing_progress))
+            }
+            R.id.menu_repo_detail_branch -> {
+                showError(getString(R.string.developing_progress))
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
 
     private val repoObserver: Observer<RemoteResource<Repo>> = Observer {
-        when(it?.state) {
-            RemoteResource.State.LOADING -> { showProgress(true) }
+        when (it?.state) {
+            RemoteResource.State.LOADING -> {
+                showProgress(true)
+            }
             RemoteResource.State.SUCCESS -> {
                 showProgress(false)
                 containerBinding.backgroundImageUrl = it.data!!.owner.avatarUrl
                 layoutContainerRepoBinding.repo = it.data
             }
-            RemoteResource.State.ERROR -> { showError(it.throwable?.message.let { _ -> "something went wrong" }) }
+            RemoteResource.State.ERROR -> {
+                showError(it.throwable?.message.let { _ -> "something went wrong" })
+            }
         }
     }
 

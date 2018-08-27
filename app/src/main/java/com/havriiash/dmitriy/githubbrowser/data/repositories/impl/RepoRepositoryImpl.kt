@@ -4,6 +4,7 @@ import com.havriiash.dmitriy.githubbrowser.data.local.GithubBrowserPreferences
 import com.havriiash.dmitriy.githubbrowser.data.remote.GithubApi
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Commit
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
+import com.havriiash.dmitriy.githubbrowser.data.remote.entity.User
 import com.havriiash.dmitriy.githubbrowser.data.repositories.Repository
 import com.havriiash.dmitriy.githubbrowser.data.repositories.interfaces.RepoRepository
 import io.reactivex.Single
@@ -43,6 +44,12 @@ class RepoRepositoryImpl
 
     override fun getCommitInfo(userName: String, repoName: String, shaId: String): Single<Commit> {
         return githubApi.getRepoCommit(userName, repoName, shaId, checkToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun getRepoEvents(userName: String, repoName: String, page: Int, count: Int): Single<List<User.UserActivity>> {
+        return githubApi.getRepoEvents(userName, repoName, page, count, checkToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

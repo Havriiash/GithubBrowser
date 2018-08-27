@@ -3,12 +3,14 @@ package com.havriiash.dmitriy.githubbrowser.di.modules
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Repo
+import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailActivityFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailCommitsFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailFilesFragmentModule
 import com.havriiash.dmitriy.githubbrowser.di.modules.repo.RepoDetailInfoFragmentModule
 import com.havriiash.dmitriy.githubbrowser.main.ui.RepoDetailActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.ContainerActivity
 import com.havriiash.dmitriy.githubbrowser.main.ui.base.IActivityContainer
+import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailActivityFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailCommitsFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailFilesFragment
 import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoDetailInfoFragment
@@ -71,5 +73,9 @@ abstract class RepoDetailActivityModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [RepoDetailCommitsFragmentModule::class])
     abstract fun repoDetailCommitsFragment(): RepoDetailCommitsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [RepoDetailActivityFragmentModule::class])
+    abstract fun repoDetailActivityFragment(): RepoDetailActivityFragment
 
 }

@@ -38,6 +38,7 @@
     <string name="tab_repo_info_title">Info</string>
     <string name="tab_repo_files_title">Files</string>
     <string name="tab_repo_commits_title">Commits</string>
+    <string name="tab_repo_activity_title">Activity</string>
     <string name="repo_detail_watchers_text">Watchers</string>
     <string name="repo_detail_forks_text">Forks</string>
     <string name="repo_detail_stargazers_text">Stargazers</string>

@@ -70,6 +70,13 @@ interface GithubApi {
                       @Path("sha") sha: String,
                       @Query("access_token") token: String): Single<Commit>
 
+    @GET("/repos/{username}/{repo_name}/events")
+    fun getRepoEvents(@Path("username") userName: String,
+                      @Path("repo_name") repoName: String,
+                      @Query("page") page: Int,
+                      @Query("per_page") count: Int,
+                      @Query("access_token") token: String): Single<List<User.UserActivity>>
+
 //    =============================================================================================
 //    User queries
 
