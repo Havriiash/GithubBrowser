@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.havriiash.dmitriy.githubbrowser.R
 import com.havriiash.dmitriy.githubbrowser.data.remote.RemoteResource
 import com.havriiash.dmitriy.githubbrowser.data.remote.entity.Organization
@@ -21,6 +22,7 @@ import com.havriiash.dmitriy.githubbrowser.main.ui.fragments.repo.RepoListFragme
 import com.havriiash.dmitriy.githubbrowser.main.vm.UserDetailViewModel
 import com.havriiash.dmitriy.githubbrowser.main.vm.factory.UserDetailVMFactory
 import com.havriiash.dmitriy.githubbrowser.utils.setViewEnabled
+import com.havriiash.dmitriy.spuilib.adapters.itemlisteners.DefaultItemClickListener
 import javax.inject.Inject
 
 class UserDetailInfoFragment : BaseFragment<User>() {
@@ -91,7 +93,9 @@ class UserDetailInfoFragment : BaseFragment<User>() {
 
     private fun showOrganizations(organizations: List<Organization>) {
         if (!organizations.isEmpty()) {
-            binding.fragmentUserDetailContentOrganizationsRv.adapter = OrganizationsAdapter(organizations, null)
+            binding.fragmentUserDetailContentOrganizationsRv.adapter = OrganizationsAdapter(organizations, DefaultItemClickListener {
+                Toast.makeText(activity, getString(R.string.developing_progress), Toast.LENGTH_LONG).show()
+            })
             binding.fragmentUserDetailContentOrganizations.visibility = View.VISIBLE
         } else {
             binding.fragmentUserDetailContentOrganizations.visibility = View.GONE
@@ -123,6 +127,13 @@ class UserDetailInfoFragment : BaseFragment<User>() {
             }
         } else {
             binding.fragmentUserDetailRepos.setViewEnabled(false)
+        }
+        if (data.publicGists > 0) {
+            binding.fragmentUserDetailGists.setOnClickListener {
+                Toast.makeText(activity, getString(R.string.developing_progress), Toast.LENGTH_LONG).show()
+            }
+        } else {
+            binding.fragmentUserDetailGists.setViewEnabled(false)
         }
     }
 

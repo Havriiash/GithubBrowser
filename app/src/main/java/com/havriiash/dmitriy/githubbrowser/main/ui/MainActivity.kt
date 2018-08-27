@@ -97,7 +97,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 navigate(RepoListFragment.create(preferences.loggedUser?.login!!), false, true)
             }
             R.id.action_gists -> {
-
+                showError(getString(R.string.developing_progress))
             }
             R.id.action_followers -> {
                 navigate(FollowersFragment.create(preferences.loggedUser?.login!!), false, true)
@@ -106,8 +106,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 navigate(FollowingFragment.create(preferences.loggedUser?.login!!), false, true)
             }
             R.id.action_search -> {
+                showError(getString(R.string.developing_progress))
             }
             R.id.action_settings -> {
+                showError(getString(R.string.developing_progress))
             }
             R.id.action_logout -> {
                 preferences.clearPreferences()
