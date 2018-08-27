@@ -77,6 +77,20 @@ interface GithubApi {
                       @Query("per_page") count: Int,
                       @Query("access_token") token: String): Single<List<User.UserActivity>>
 
+    @GET("/repos/{username}/{repo_name}/stargazers")
+    fun getRepoStargazers(@Path("username") userName: String,
+                          @Path("repo_name") repoName: String,
+                          @Query("page") page: Int,
+                          @Query("per_page") count: Int,
+                          @Query("access_token") token: String): Single<List<Follower>>
+
+    @GET("/repos/{username}/{repo_name}/contributors")
+    fun getRepoContributors(@Path("username") userName: String,
+                          @Path("repo_name") repoName: String,
+                          @Query("page") page: Int,
+                          @Query("per_page") count: Int,
+                          @Query("access_token") token: String): Single<List<Follower>>
+
 //    =============================================================================================
 //    User queries
 
